@@ -92,7 +92,7 @@ input{
 <body>
 
 <audio id="bgm" loop muted>
-    <source src="audio/audio.mp3" type="audio/mpeg">
+    <source src="./audio/audio.mp3" type="audio/mpeg">
 </audio>
 
 <div id="terminal"></div>
@@ -112,7 +112,12 @@ function startMusic(){
     bgm.volume = 0.5;
     bgm.muted = false;
 
-    bgm.play().catch(()=>{});
+    const playPromise = bgm.play();
+    if (playPromise !== undefined) {
+        playPromise.catch(error => {
+            console.log("Audio playback failed:", error);
+        });
+    }
 }
 
 document.addEventListener("click", startMusic);
