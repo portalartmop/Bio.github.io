@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Aperture Terminal</title>
+
+<style>
+
+body{
+    margin:0;
+    background:#000;
+    color:#ff8c00;
+    font-family:Consolas,monospace;
+    overflow:hidden;
+}
+
+/* FLICKER EFFECT */
+body.flicker{
+    animation:flicker .12s infinite;
+}
+
+@keyframes flicker{
+    0%{opacity:1}
+    20%{opacity:.9}
+    40%{opacity:1}
+    60%{opacity:.85}
+    80%{opacity:1}
+    100%{opacity:.95}
+}
+
+/* TERMINAL */
+#terminal{
+    padding:25px;
+    white-space:pre-wrap;
+    line-height:1.6;
+    text-shadow:0 0 8px #ff8c00;
+}
+
+/* INPUT */
+.input-line{
+    display:flex;
+}
+
+.prompt{
+    margin-right:10px;
+    color:#ffb347;
+}
+
+input{
+    background:none;
+    border:none;
+    outline:none;
+    color:#ff8c00;
+    font:inherit;
+    width:100%;
+}
+
+/* MUSIC BUTTON */
+#musicBtn{
+    position:fixed;
+    top:10px;
+    right:10px;
+    background:#111;
+    color:#ff8c00;
+    border:1px solid #ff8c00;
+    padding:8px 12px;
+    cursor:pointer;
+    font-family:Consolas;
+}
+
+#musicBtn:hover{
+    background:#222;
+}
+
+/* CREDITS */
+#credits{
+    position:fixed;
+    inset:0;
+    background:black;
+    color:white;
+    font-family:Arial;
+    text-align:center;
+    padding-top:40vh;
+    font-size:26px;
+    animation:scroll 25s linear forwards;
+    white-space:pre-line;
+}
+
+@keyframes scroll{
+    from{transform:translateY(100vh);}
+    to{transform:translateY(-120%);}
+}
+
+/* SHUTDOWN */
+#shutdown{
+    position:fixed;
+    inset:0;
+    background:black;
+    color:#666;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:Consolas;
+    font-size:18px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC -->
+<audio id="bgm" loop autoplay muted>
+    <source src="audio.mp3" type="audio/mpeg">
+</audio>
+
+<div id="terminal"></div>
+
+<script>
+
+const terminal=document.getElementById("terminal");
+const bgm=document.getElementById("bgm");
+const musicBtn=document.getElementById("musicBtn");
+
+let musicOn=false;
+
+/* MUSIC TOGGLE */
+const bgm = document.getElementById("bgm");
+
+/* try to start immediately */
+window.addEventListener("load", async () => {
+    try {
+        await bgm.play(); // starts muted (allowed)
+        
+        // unmute after tiny delay
+        setTimeout(() => {
+            bgm.muted = false;
+            bgm.volume = 0.5;
+        }, 300);
+        
+    } catch (e) {
+        // fallback: still blocked until user input
+        console.log("Autoplay blocked by browser");
+    }
+});
+
+/* BOOT */
+async function boot(){
+
+const intro=[
+"APERTURE SCIENCE COMPUTER-AIDED ENRICHMENT CENTER",
+"",
+"-----------------------------------",
+"",
+"[ OK ] Core Systems Online",
+"[ OK ] AI Interface Active",
+"[ OK ] Monitoring Systems Stable",
+"",
+"-----------------------------------",
+"",
+"Type 'bio' or 'end'"
+];
+
+for(const line of intro){
+await typeLine(line,8);
+}
+
+createInput();
+}
+
+/* INPUT */
+function createInput(){
+
+const row=document.createElement("div");
+row.className="input-line";
+
+row.innerHTML=`
+<span class="prompt">aperture@facility:~$</span>
+<input id="cmd" autofocus>
+`;
+
+terminal.appendChild(row);
+
+const input=row.querySelector("input");
+
+input.focus();
+
+/* unlock audio on first interaction */
+input.addEventListener("keydown",()=>{
+    if(!musicOn){
+        bgm.play();
+        musicBtn.textContent="⏸ MUSIC";
+        musicOn=true;
+    }
+});
+
+input.addEventListener("keydown",(e)=>{
+if(e.key==="Enter"){
+
+const cmd=input.value.trim().toLowerCase();
+
+row.remove();
+
+run(cmd);
+
+}
+});
+
+}
+
+/* COMMANDS */
+async function run(cmd){
+
+terminal.innerHTML+="aperture@facility:~$ "+cmd+"\n";
+
+if(cmd==="bio"){
+
+await typeLine(
+`NAME: ARTEM
+ROLE: DEVELOPER, PROGRAMIST
+STATUS: ACTIVE`,
+8
+);
+
+createInput();
+return;
+}
+
+if(cmd==="end"){
+startCredits();
+return;
+}
+
+await typeLine("unknown command",8);
+createInput();
+}
+
+/* FLICKER */
+function startFlicker(){
+document.body.classList.add("flicker");
+setTimeout(()=>{
+document.body.classList.remove("flicker");
+},4000);
+}
+
+setInterval(()=>startFlicker(),12000);
+
+/* CREDITS */
+function startCredits(){
+
+document.body.innerHTML=`
+<div id="credits">
+APERTURE SCIENCE
+
+TEST COMPLETE
+
+DEVELOPER
+LOVEROFPORTAL
+
+SYSTEM STATUS
+ALL TESTS SUCCESSFUL
+
+SPECIAL THANKS
+GLaDOS
+COMPANION CUBE
+THE FACILITY
+
+...
+
+THIS WAS A TRIUMPH
+
+I'M MAKING A NOTE HERE:
+
+HUGE SUCCESS
+
+THE CAKE IS A LIE
+</div>
+`;
+
+setTimeout(shutdown,24000);
+}
+
+/* SHUTDOWN */
+function shutdown(){
+document.body.innerHTML=`
+<div id="shutdown">
+SYSTEM SHUTDOWN COMPLETE<br>
+SIGNAL LOST
+</div>
+`;
+}
+
+boot();
+
+</script>
+
+</body>
+</html>
