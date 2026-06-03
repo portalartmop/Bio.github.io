@@ -124,23 +124,21 @@ input::placeholder{
     transform:scale(0.95);
 }
 
-/* CREDITS */
-#credits{
+/* VIDEO CONTAINER */
+#video-container{
     position:fixed;
     inset:0;
     background:black;
-    color:#ff8c00;
-    font-family:Consolas,monospace;
-    text-align:center;
-    padding-top:40vh;
-    font-size:26px;
-    animation:scroll 25s linear forwards;
-    white-space:pre-line;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
 }
 
-@keyframes scroll{
-    from{transform:translateY(100vh);}
-    to{transform:translateY(-120%);}
+#video-container video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
 }
 
 /* SHUTDOWN */
@@ -154,6 +152,7 @@ input::placeholder{
     align-items:center;
     font-family:Consolas;
     font-size:18px;
+    z-index:2000;
 }
 </style>
 </head>
@@ -169,7 +168,7 @@ input::placeholder{
 </audio>
 
 <div id="logo-container">
-    <pre>⠀⠀⠀⠀⢀⡠⣤⣶⣶⣶⣦⡄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    <pre>⠀⠀⠀⠀⢀⡠⣤⣶⣶⣶⣦⡄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[...]
 ⠀⠀⢀⣴⣿⣿⣶⣝⡻⣿⣿⣇⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⣠⡿⠿⢿⣛⠛⠋⠉⠈⠙⠿⢸⣿⣿⡷⣀⣀⠀⠀⠀⢀⣀⣀⣀⡀⠀⠀⣀⣀⣀⣀⡀⠀⣀⣀⣀⣀⠀⢀⣀⣀⣀⣀⣀⠀⣀⣀⠀⠀⣀⡀⠀⢀⣀⣀⣀⡀⠀⠀⣀⣀⣀⣀⡀
 ⠀⣶⣿⣿⡿⠁⠀⠀⠀⠀⠀⠀⠘⣿⢟⣼⣿⣿⡆⠀⠀⣾⣿⠛⣻⣿⠀⢸⣿⠟⠛⠛⠀⢸⣿⠟⢻⣿⡇⠘⠛⣿⣿⠛⠛⢀⣿⡟⠀⢰⣿⡇⠀⣿⡿⠛⣿⣿⠀⢰⣿⠟⠛⠛⠀
@@ -177,7 +176,7 @@ input::placeholder{
 ⠀⣿⢯⣾⣿⠀⠀⠀⠀⠀⠀⠀⠠⠿⠟⠉⠉⠿⠿⠀⠸⠿⠃⠀⠀⠀⠰⠿⠿⠿⠿⠃⠠⠿⠇⠠⠿⠯⠀⠀⠸⠿⠁⠀⠀⠘⠿⣷⡾⠿⠃⠀⠼⠿⠀⠸⠿⠅⠠⠿⠿⠿⠿⠃⠀
 ⠀⠀⣿⣿⣿⡼⣦⣄⢀⣀⣤⣤⣴⣶⣶⡿⠁⠀⡆⠀⠀⢀⣶⡄⠀⢰⣖⣲⠀⢠⡖⠒⡆⠀⢰⣖⡦⠀⢀⣴⡄⠀⠒⣶⠒⠀⣰⠖⢲⠀⠀⣶⣲⠄⠀⡆⠀⢰⣒⡂⠀⣶⣒⡆⠀
 ⠀⠀⠈⠻⣿⡇⣿⣿⣷⣮⣻⢿⣿⡿⠏⠀⠀⠀⠓⠲⠀⠞⠉⠹⠀⠘⠓⠚⠀⠈⠳⠖⠃⠀⠸⠀⠗⠀⠞⠉⠹⠂⠀⠻⠀⠀⠘⠲⠞⠀⠀⠇⠘⠆⠀⠇⠀⠘⠒⠆⠀⠓⠶⠃⠀
-⠀⠀⠀⠀⠈⠙⠘⠿⠿⠿⠟⠓⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠈⠙⠘⠿⠿⠿⠟⠓⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[...]
 </pre>
 </div>
 
@@ -366,29 +365,12 @@ setInterval(flicker,12000);
 
 /* CREDITS */
 function startCredits(){
-
     document.body.innerHTML=`
-    <div id="credits">
-APERTURE SCIENCE 
-
-TEST COMPLETE
-
-DEVELOPER
-PORTALARTMOP
-
-SYSTEM STATUS
-ALL TESTS SUCCESSFUL
-
-SPECIAL THANKS
-GLaDOS
-COMPANION CUBE
-THE FACILITY
-
-THIS WAS A TRIUMPH
-
-HUGE SUCCESS
-
-THE CAKE IS A LIE
+    <div id="video-container">
+        <video autoplay>
+            <source src="./credits.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
     </div>
     `;
 
