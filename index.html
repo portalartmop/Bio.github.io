@@ -34,25 +34,24 @@ body.flicker{
     top:50%;
     right:30px;
     transform:translateY(-50%);
-    width:200px;
+    width:auto;
     height:auto;
     z-index:10;
     user-select:none;
     pointer-events:none;
-}
-
-#logo-svg{
-    width:100%;
-    height:auto;
-    filter:drop-shadow(0 0 15px #ff8c00);
+    white-space:pre;
+    font-size:11px;
+    line-height:1.2;
+    text-shadow:0 0 8px #ff8c00;
+    letter-spacing:1px;
 }
 
 #logo-text{
     text-align:center;
     color:#ff8c00;
-    font-size:14px;
+    font-size:12px;
     font-weight:bold;
-    margin-top:10px;
+    margin-top:8px;
     text-shadow:0 0 8px #ff8c00;
     letter-spacing:2px;
 }
@@ -132,41 +131,13 @@ input::placeholder{
 </audio>
 
 <div id="logo-container">
-    <svg id="logo-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-        <!-- Outer circle -->
-        <circle cx="100" cy="100" r="95" fill="none" stroke="#ff8c00" stroke-width="2"/>
-        
-        <!-- Inner circle -->
-        <circle cx="100" cy="100" r="85" fill="none" stroke="#ff8c00" stroke-width="1"/>
-        
-        <!-- Core aperture circle -->
-        <circle cx="100" cy="100" r="70" fill="none" stroke="#ff8c00" stroke-width="2"/>
-        
-        <!-- Aperture blades (8 segments) -->
-        <g stroke="#ff8c00" stroke-width="2" fill="none">
-            <line x1="100" y1="30" x2="100" y2="50"/>
-            <line x1="100" y1="150" x2="100" y2="170"/>
-            <line x1="30" y1="100" x2="50" y2="100"/>
-            <line x1="150" y1="100" x2="170" y2="100"/>
-            
-            <!-- Diagonal blades -->
-            <line x1="55" y1="55" x2="70" y2="70"/>
-            <line x1="130" y1="130" x2="145" y2="145"/>
-            <line x1="145" y1="55" x2="130" y2="70"/>
-            <line x1="70" y1="130" x2="55" y2="145"/>
-        </g>
-        
-        <!-- Center dot -->
-        <circle cx="100" cy="100" r="4" fill="#ff8c00"/>
-        
-        <!-- Corner details -->
-        <g stroke="#ff8c00" stroke-width="1.5" fill="none" opacity="0.8">
-            <rect x="35" y="35" width="20" height="20"/>
-            <rect x="145" y="35" width="20" height="20"/>
-            <rect x="35" y="145" width="20" height="20"/>
-            <rect x="145" y="145" width="20" height="20"/>
-        </g>
-    </svg>
+    <pre>    ╔═══════════════╗
+    ║     ◇◇◇       ║
+    ║    ◇  ◇  ◇    ║
+    ║   ◇    ○    ◇  ║
+    ║    ◇  ◇  ◇    ║
+    ║     ◇◇◇       ║
+    ╚═══════════════╝</pre>
     <div id="logo-text">APERTURE<br>SCIENCE</div>
 </div>
 
