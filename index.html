@@ -110,6 +110,7 @@ input::placeholder{
     display:inline-block;
     transition:all 0.3s ease;
     text-shadow:0 0 8px #ff8c00;
+    pointer-events:auto;
 }
 
 .social-btn:hover{
@@ -162,8 +163,13 @@ input::placeholder{
 <audio id="bg-music" loop preload="auto" autoplay>
     <source src="./audio.mp3" type="audio/mpeg" />
 </audio>
+
+<audio id="hover-sound" preload="auto">
+    <source src="./hover.mp3" type="audio/mpeg" />
+</audio>
+
 <div id="logo-container">
-    <pre>⠀⠀⠀⠀⢀⡠⣤⣶⣶⣶⣦⡄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    <pre>⠀⠀⠀⠀⢀⡠⣤⣶⣶⣶⣦⡄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⢀⣴⣿⣿⣶⣝⡻⣿⣿⣇⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⣠⡿⠿⢿⣛⠛⠋⠉⠈⠙⠿⢸⣿⣿⡷⣀⣀⠀⠀⠀⢀⣀⣀⣀⡀⠀⠀⣀⣀⣀⣀⡀⠀⣀⣀⣀⣀⠀⢀⣀⣀⣀⣀⣀⠀⣀⣀⠀⠀⣀⡀⠀⢀⣀⣀⣀⡀⠀⠀⣀⣀⣀⣀⡀
 ⠀⣶⣿⣿⡿⠁⠀⠀⠀⠀⠀⠀⠘⣿⢟⣼⣿⣿⡆⠀⠀⣾⣿⠛⣻⣿⠀⢸⣿⠟⠛⠛⠀⢸⣿⠟⢻⣿⡇⠘⠛⣿⣿⠛⠛⢀⣿⡟⠀⢰⣿⡇⠀⣿⡿⠛⣿⣿⠀⢰⣿⠟⠛⠛⠀
@@ -171,7 +177,7 @@ input::placeholder{
 ⠀⣿⢯⣾⣿⠀⠀⠀⠀⠀⠀⠀⠠⠿⠟⠉⠉⠿⠿⠀⠸⠿⠃⠀⠀⠀⠰⠿⠿⠿⠿⠃⠠⠿⠇⠠⠿⠯⠀⠀⠸⠿⠁⠀⠀⠘⠿⣷⡾⠿⠃⠀⠼⠿⠀⠸⠿⠅⠠⠿⠿⠿⠿⠃⠀
 ⠀⠀⣿⣿⣿⡼⣦⣄⢀⣀⣤⣤⣴⣶⣶⡿⠁⠀⡆⠀⠀⢀⣶⡄⠀⢰⣖⣲⠀⢠⡖⠒⡆⠀⢰⣖⡦⠀⢀⣴⡄⠀⠒⣶⠒⠀⣰⠖⢲⠀⠀⣶⣲⠄⠀⡆⠀⢰⣒⡂⠀⣶⣒⡆⠀
 ⠀⠀⠈⠻⣿⡇⣿⣿⣷⣮⣻⢿⣿⡿⠏⠀⠀⠀⠓⠲⠀⠞⠉⠹⠀⠘⠓⠚⠀⠈⠳⠖⠃⠀⠸⠀⠗⠀⠞⠉⠹⠂⠀⠻⠀⠀⠘⠲⠞⠀⠀⠇⠘⠆⠀⠇⠀⠘⠒⠆⠀⠓⠶⠃⠀
-⠀⠀⠀⠀⠈⠙⠘⠿⠿⠿⠟⠓⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠈⠙⠘⠿⠿⠿⠟⠓⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 </pre>
 </div>
 
@@ -182,6 +188,7 @@ input::placeholder{
 const terminal = document.getElementById("terminal");
 const logoContainer = document.getElementById("logo-container");
 const bgm = document.getElementById("bg-music");
+const hoverSound = document.getElementById("hover-sound");
 
 /* AUDIO AUTO START (browser-safe) */
 let musicStarted = false;
@@ -204,6 +211,14 @@ function startMusic(){
 document.addEventListener("click", startMusic);
 document.addEventListener("keydown", startMusic);
 document.addEventListener("touchstart", startMusic);
+
+/* PLAY HOVER SOUND */
+function playHoverSound(){
+    hoverSound.currentTime = 0;
+    hoverSound.play().catch(error => {
+        console.log("Hover sound playback failed:", error);
+    });
+}
 
 /* TYPE SYSTEM */
 function typeLine(text, speed=10){
@@ -299,6 +314,12 @@ STATUS: ACTIVE
             <a href="https://github.com/portalartmop" target="_blank" class="social-btn">[ GITHUB ]</a>
         `;
         terminal.appendChild(bioDiv);
+        
+        // Add hover sound to all buttons
+        const buttons = bioDiv.querySelectorAll(".social-btn");
+        buttons.forEach(btn => {
+            btn.addEventListener("mouseenter", playHoverSound);
+        });
         
         createInput();
         return;
