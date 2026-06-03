@@ -167,9 +167,9 @@ input::placeholder{
     align-items:center;
     z-index:3000;
     font-family:Consolas,monospace;
-    text-shadow:0 0 10px #00ff00;
-    border:2px solid #00ff00;
-    box-shadow:0 0 20px #00ff00;
+    text-shadow:0 0 10px #ff8c00;
+    border:2px solid #ff8c00;
+    box-shadow:0 0 20px #ff8c00;
 }
 
 .hack-bar{
@@ -222,16 +222,16 @@ input::placeholder{
 }
 
 @keyframes glitch{
-    0%{text-shadow:0 0 10px #ff8c00,2px 2px 0 ##f38cff}
-    50%{text-shadow:0 0 10px #ff8c00,-2px -2px 0 #ff8c00}
-    100%{text-shadow:0 0 10px #ff8c00,2px 2px 0 #ff8c30}
+    0%{text-shadow:0 0 10px #ff8c00,2px 2px 0 #ff6347}
+    50%{text-shadow:0 0 10px #ff8c00,-2px -2px 0 #ffa500}
+    100%{text-shadow:0 0 10px #ff8c00,2px 2px 0 #ff7f50}
 }
 
 .process-container{
     margin:20px 0;
-    border:2px solid #00ff00;
+    border:2px solid #ff8c00;
     padding:15px;
-    background:rgba(0,255,0,0.05);
+    background:rgba(255,140,0,0.05);
 }
 
 .process-name{
@@ -250,15 +250,15 @@ input::placeholder{
 .status-indicator{
     width:20px;
     height:20px;
-    border:2px solid #00ff00;
+    border:2px solid #ff8c00;
     display:flex;
     align-items:center;
     justify-content:center;
 }
 
 .status-indicator.active{
-    background:#00ff00;
-    box-shadow:0 0 10px #00ff00;
+    background:#ff8c00;
+    box-shadow:0 0 10px #ff8c00;
 }
 
 .status-indicator.inactive{
@@ -267,20 +267,20 @@ input::placeholder{
 
 .process-btn{
     background:none;
-    border:2px solid #00ff00;
-    color:#00ff00;
+    border:2px solid #ff8c00;
+    color:#ff8c00;
     padding:8px 16px;
     cursor:pointer;
     font-family:Consolas,monospace;
     font-size:12px;
     transition:all 0.3s;
-    text-shadow:0 0 8px #00ff00;
+    text-shadow:0 0 8px #ff8c00;
 }
 
 .process-btn:hover{
-    background:#00ff00;
+    background:#ff8c00;
     color:#000;
-    box-shadow:0 0 15px #00ff00;
+    box-shadow:0 0 15px #ff8c00;
 }
 
 .process-btn:active{
@@ -308,8 +308,8 @@ input::placeholder{
 }
 
 .glados-log{
-    background:rgba(0,255,0,0.1);
-    border:2px solid #00ff00;
+    background:rgba(255,140,0,0.1);
+    border:2px solid #ff8c00;
     padding:20px;
     margin-top:20px;
     max-height:200px;
@@ -332,7 +332,69 @@ input::placeholder{
 }
 
 .log-entry.success{
-    color:#00ff00;
+    color:#ff8c00;
+}
+
+/* CUSTOMIZATION SECTION */
+.customization-section{
+    border:2px solid #ff8c00;
+    padding:20px;
+    margin-top:20px;
+    background:rgba(255,140,0,0.05);
+}
+
+.custom-option{
+    margin:15px 0;
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.custom-option label{
+    font-size:12px;
+    min-width:150px;
+    font-weight:bold;
+}
+
+.custom-option input[type="text"],
+.custom-option input[type="color"]{
+    background:rgba(255,140,0,0.1);
+    border:1px solid #ff8c00;
+    color:#ff8c00;
+    padding:8px 12px;
+    font-family:Consolas,monospace;
+    font-size:11px;
+    cursor:pointer;
+}
+
+.custom-option input[type="color"]{
+    width:50px;
+    height:35px;
+    padding:2px;
+}
+
+.custom-option input[type="text"]::placeholder{
+    color:#ff8c00;
+    opacity:0.5;
+}
+
+.save-customization-btn{
+    background:none;
+    border:2px solid #ff8c00;
+    color:#ff8c00;
+    padding:10px 20px;
+    cursor:pointer;
+    font-family:Consolas,monospace;
+    font-size:12px;
+    margin-top:15px;
+    transition:all 0.3s;
+    text-shadow:0 0 8px #ff8c00;
+}
+
+.save-customization-btn:hover{
+    background:#ff8c00;
+    color:#000;
+    box-shadow:0 0 15px #ff8c00;
 }
 </style>
 </head>
@@ -379,6 +441,13 @@ let glados = {
     neurotoxin: false
 };
 
+/* CUSTOMIZATION SETTINGS */
+let customization = {
+    facility_name: "APERTURE SCIENCE",
+    admin_name: "ARTEM",
+    primary_color: "#ff8c00"
+};
+
 /* LOAD STATE FROM COOKIES */
 function loadState(){
     const cookie = getCookie("glados_state");
@@ -389,11 +458,25 @@ function loadState(){
             console.log("Cookie parse error");
         }
     }
+    
+    const customCookie = getCookie("glados_custom");
+    if(customCookie){
+        try{
+            customization = JSON.parse(decodeURIComponent(customCookie));
+        }catch(e){
+            console.log("Custom settings parse error");
+        }
+    }
 }
 
 /* SAVE STATE TO COOKIES */
 function saveState(){
     document.cookie = "glados_state=" + encodeURIComponent(JSON.stringify(glados)) + ";path=/;max-age=31536000";
+}
+
+/* SAVE CUSTOMIZATION TO COOKIES */
+function saveCustomization(){
+    document.cookie = "glados_custom=" + encodeURIComponent(JSON.stringify(customization)) + ";path=/;max-age=31536000";
 }
 
 /* COOKIE FUNCTIONS */
@@ -469,7 +552,7 @@ async function boot(){
     loadState();
 
     const intro=[
-        "APERTURE SCIENCE COMPUTER-AIDED ENRICHMENT CENTER",
+        customization.facility_name + " COMPUTER-AIDED ENRICHMENT CENTER",
         "",
         "----------------------------------------",
         "[ OK ] Core Systems Online",
@@ -604,12 +687,28 @@ async function openGLaDOSPanel(){
         <div style="font-size:12px;margin-bottom:20px;opacity:0.7;">
             FACILITY OVERRIDE DETECTED | STATUS: COMPROMISED | ACCESS LEVEL: UNRESTRICTED
         </div>
-        <div style="border:1px solid #00ff00;padding:15px;margin-bottom:20px;font-size:12px;">
+        <div style="border:1px solid #ff8c00;padding:15px;margin-bottom:20px;font-size:12px;">
             <div>CORE SYSTEMS AVAILABLE FOR MANIPULATION</div>
             <div>MODIFICATIONS WILL BE PERSISTED IN LOCAL STORAGE</div>
             <div>WARNING: DISABLING CRITICAL PROCESSES MAY CAUSE FACILITY MALFUNCTION</div>
         </div>
         ${processHTML}
+        <div class="customization-section">
+            <h2 style="margin-top:0;font-size:16px;letter-spacing:2px;">[ CUSTOMIZATION ]</h2>
+            <div class="custom-option">
+                <label>Facility Name:</label>
+                <input type="text" id="facility-name" placeholder="Enter facility name" value="${customization.facility_name}">
+            </div>
+            <div class="custom-option">
+                <label>Admin Name:</label>
+                <input type="text" id="admin-name" placeholder="Enter admin name" value="${customization.admin_name}">
+            </div>
+            <div class="custom-option">
+                <label>Primary Color:</label>
+                <input type="color" id="primary-color" value="${customization.primary_color}">
+            </div>
+            <button class="save-customization-btn" id="save-custom-btn">[ SAVE CUSTOMIZATION ]</button>
+        </div>
         <div class="glados-log">
             <div class="log-entry success">[LOG] HACK SUCCESSFUL - GLADOS COMPROMISED</div>
             <div class="log-entry">[LOG] NEURAL FIREWALL DISABLED</div>
@@ -645,6 +744,23 @@ async function openGLaDOSPanel(){
                 status.textContent = 'INACTIVE';
             }
         });
+    });
+    
+    // Customization save button
+    panel.querySelector("#save-custom-btn").addEventListener("click", () => {
+        customization.facility_name = panel.querySelector("#facility-name").value || customization.facility_name;
+        customization.admin_name = panel.querySelector("#admin-name").value || customization.admin_name;
+        customization.primary_color = panel.querySelector("#primary-color").value;
+        
+        saveCustomization();
+        
+        // Show confirmation
+        const logDiv = panel.querySelector(".glados-log");
+        const entry = document.createElement("div");
+        entry.className = "log-entry success";
+        entry.textContent = "[LOG] CUSTOMIZATION SAVED SUCCESSFULLY";
+        logDiv.appendChild(entry);
+        logDiv.scrollTop = logDiv.scrollHeight;
     });
     
     // Exit button
@@ -736,7 +852,7 @@ async function run(cmd){
 
     if(cmd==="bio"){
         await typeLine(
-            `NAME: ARTEM
+            `NAME: ${customization.admin_name}
 ROLE: DEVELOPER, PROGRAMIST
 STATUS: ACTIVE
             SOCIALS:`,
@@ -766,7 +882,8 @@ STATUS: ACTIVE
             `COMMANDS LIST:
   bio        - Display developer information
   end        - Start credits sequence
-  clear      - Clear terminal screen`,
+  clear      - Clear terminal screen
+  :command   - Open system control panel`,
             8
         );
         createInput();
