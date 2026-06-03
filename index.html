@@ -113,119 +113,13 @@ input::placeholder{
     opacity:0.5;
 }
 
-/* SOCIAL BUTTONS */
-.social-buttons{
-    display:flex;
-    gap:15px;
-    margin-top:15px;
-    flex-wrap:wrap;
-}
-
-.social-btn{
-    background:none;
-    border:2px solid #ff8c00;
-    color:#ff8c00;
-    padding:8px 16px;
-    cursor:pointer;
-    font-family:Consolas,monospace;
-    font-size:12px;
-    text-decoration:none;
-    display:inline-block;
-    transition:all 0.3s ease;
-    text-shadow:0 0 8px #ff8c00;
-    pointer-events:auto;
-}
-
-.social-btn:hover{
-    background:#ff8c00;
-    color:#000;
-    box-shadow:0 0 15px #ff8c00;
-    text-shadow:none;
-}
-
-.social-btn:active{
-    transform:scale(0.95);
-}
-
-/* VIDEO CONTAINER */
-#video-container{
-    position:fixed;
-    inset:0;
-    background:black;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    z-index:1000;
-}
-
-#video-container video{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
-/* SHUTDOWN */
-#shutdown{
-    position:fixed;
-    inset:0;
-    background:black;
-    color:#ff8c00;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-family:Consolas;
-    font-size:18px;
-    z-index:2000;
-}
-
-/* HACK LOADING SCREEN */
-#hack-loading{
+/* CUSTOMIZATION HUB */
+#customization-hub{
     position:fixed;
     inset:0;
     background:#000;
     color:#00ff00;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    z-index:3000;
-    font-family:Consolas,monospace;
-    text-shadow:0 0 10px #00ff00;
-    border:2px solid #00ff00;
-    box-shadow:0 0 20px #00ff00;
-}
-
-.hack-bar{
-    width:400px;
-    height:30px;
-    border:2px solid #00ff00;
-    margin:20px 0;
-    position:relative;
-    text-shadow:0 0 10px #00ff00;
-}
-
-.hack-bar-fill{
-    height:100%;
-    background:#00ff00;
-    width:0%;
-    transition:width 0.1s linear;
-    box-shadow:0 0 10px #00ff00;
-}
-
-.hack-text{
-    font-size:14px;
-    margin:10px 0;
-    letter-spacing:2px;
-    text-shadow:0 0 10px #00ff00;
-}
-
-/* GLADOS PANEL */
-#glados-panel{
-    position:fixed;
-    inset:0;
-    background:#000;
-    color:#00ff00;
-    display:flex;
+    display:none;
     flex-direction:column;
     padding:40px;
     z-index:3000;
@@ -236,215 +130,32 @@ input::placeholder{
     box-shadow:0 0 30px #00ff00;
 }
 
-#glados-panel h1{
+#customization-hub.active{
+    display:flex;
+}
+
+.hub-title{
     text-align:center;
     font-size:24px;
     margin-bottom:30px;
     letter-spacing:3px;
-    animation:glitch 0.3s infinite;
+    color:#ffff00;
+    text-shadow:0 0 10px #ffff00;
 }
 
-@keyframes glitch{
-    0%{text-shadow:0 0 10px #00ff00,2px 2px 0 #ff0000}
-    50%{text-shadow:0 0 10px #00ff00,-2px -2px 0 #00ffff}
-    100%{text-shadow:0 0 10px #00ff00,2px 2px 0 #ff0000}
-}
-
-.glados-ascii{
-    text-align:center;
-    font-size:10px;
-    margin:20px 0;
-    line-height:1;
-    opacity:0.8;
-}
-
-.process-container{
+.hub-section{
     margin:20px 0;
     border:2px solid #00ff00;
-    padding:15px;
+    padding:20px;
     background:rgba(0,255,0,0.05);
 }
 
-.process-name{
+.section-title{
     font-size:14px;
     font-weight:bold;
-    margin-bottom:10px;
+    margin-bottom:15px;
     letter-spacing:2px;
-}
-
-.process-description{
-    font-size:11px;
-    opacity:0.7;
-    margin-bottom:10px;
-    color:#88ff88;
-}
-
-.process-status{
-    display:flex;
-    gap:20px;
-    align-items:center;
-    flex-wrap:wrap;
-}
-
-.status-indicator{
-    width:20px;
-    height:20px;
-    border:2px solid #00ff00;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.status-indicator.active{
-    background:#00ff00;
-    box-shadow:0 0 10px #00ff00;
-}
-
-.status-indicator.inactive{
-    background:transparent;
-}
-
-.process-btn{
-    background:none;
-    border:2px solid #00ff00;
     color:#00ff00;
-    padding:8px 16px;
-    cursor:pointer;
-    font-family:Consolas,monospace;
-    font-size:12px;
-    transition:all 0.3s;
-    text-shadow:0 0 8px #00ff00;
-}
-
-.process-btn:hover{
-    background:#00ff00;
-    color:#000;
-    box-shadow:0 0 15px #00ff00;
-}
-
-.process-btn:active{
-    transform:scale(0.95);
-}
-
-.process-btn.warning{
-    border-color:#ff6600;
-    color:#ff6600;
-    text-shadow:0 0 8px #ff6600;
-}
-
-.process-btn.warning:hover{
-    background:#ff6600;
-}
-
-.exit-btn{
-    background:none;
-    border:2px solid #ff0000;
-    color:#ff0000;
-    padding:12px 24px;
-    cursor:pointer;
-    font-family:Consolas,monospace;
-    font-size:14px;
-    margin-top:30px;
-    transition:all 0.3s;
-    text-shadow:0 0 8px #ff0000;
-    align-self:center;
-}
-
-.exit-btn:hover{
-    background:#ff0000;
-    color:#000;
-    box-shadow:0 0 15px #ff0000;
-}
-
-.glados-log{
-    background:rgba(0,255,0,0.1);
-    border:2px solid #00ff00;
-    padding:20px;
-    margin-top:20px;
-    max-height:200px;
-    overflow-y:auto;
-    font-size:12px;
-    line-height:1.6;
-}
-
-.log-entry{
-    margin:5px 0;
-    opacity:0.8;
-}
-
-.log-entry.warning{
-    color:#ffaa00;
-}
-
-.log-entry.error{
-    color:#ff0000;
-}
-
-.log-entry.success{
-    color:#00ff00;
-}
-
-/* WHEATLEY OVERLAY */
-.wheatley-overlay{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.9);
-    z-index:2500;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-family:Consolas,monospace;
-    color:#00ff00;
-    text-align:center;
-    border:3px solid #ff6600;
-    box-shadow:0 0 30px #ff6600;
-    flex-direction:column;
-    text-shadow:0 0 10px #ff6600;
-}
-
-.wheatley-text{
-    font-size:18px;
-    margin:20px;
-    animation:glitch 0.3s infinite;
-}
-
-/* REDACTION EFFECT */
-.redacted{
-    background:#ff0000;
-    color:#ff0000;
-    text-shadow:0 0 5px #ff0000;
-    padding:2px 5px;
-}
-
-/* CUSTOM COMMAND PANEL */
-#custom-command-panel{
-    position:fixed;
-    inset:0;
-    background:#000;
-    color:#ffff00;
-    display:flex;
-    flex-direction:column;
-    padding:40px;
-    z-index:3000;
-    overflow-y:auto;
-    font-family:Consolas,monospace;
-    text-shadow:0 0 10px #ffff00;
-    border:3px solid #ffff00;
-    box-shadow:0 0 30px #ffff00;
-}
-
-#custom-command-panel h1{
-    text-align:center;
-    font-size:24px;
-    margin-bottom:30px;
-    letter-spacing:3px;
-}
-
-.command-form{
-    border:2px solid #ffff00;
-    padding:20px;
-    margin:15px 0;
-    background:rgba(255,255,0,0.05);
 }
 
 .form-group{
@@ -455,94 +166,276 @@ input::placeholder{
     display:block;
     margin-bottom:8px;
     font-weight:bold;
-    color:#ffff00;
+    color:#00ff00;
 }
 
 .form-group input,
-.form-group textarea{
+.form-group textarea,
+.form-group select{
     width:100%;
     padding:10px;
-    background:rgba(0,0,0,0.5);
-    border:2px solid #ffff00;
-    color:#ffff00;
+    background:rgba(0,255,0,0.1);
+    border:2px solid #00ff00;
+    color:#00ff00;
     font-family:Consolas,monospace;
+    font-size:12px;
     box-sizing:border-box;
-    text-shadow:0 0 8px #ffff00;
+    text-shadow:0 0 8px #00ff00;
 }
 
 .form-group textarea{
-    min-height:100px;
+    min-height:80px;
     resize:vertical;
 }
 
-.command-list{
-    border:2px solid #ffff00;
-    padding:20px;
-    margin:15px 0;
-    background:rgba(255,255,0,0.05);
-}
-
-.command-item{
-    border:1px solid #ffff00;
-    padding:10px;
-    margin:10px 0;
+.color-picker{
     display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.command-item-name{
-    font-weight:bold;
-}
-
-.delete-cmd-btn{
-    background:none;
-    border:2px solid #ff0000;
-    color:#ff0000;
-    padding:5px 10px;
-    cursor:pointer;
-    font-family:Consolas,monospace;
-    font-size:11px;
-    text-shadow:0 0 8px #ff0000;
-}
-
-.delete-cmd-btn:hover{
-    background:#ff0000;
-    color:#000;
-}
-
-.btn-group{
-    display:flex;
-    gap:15px;
-    margin-top:20px;
-    justify-content:center;
+    gap:10px;
     flex-wrap:wrap;
 }
 
-.panel-btn{
+.color-option{
+    width:40px;
+    height:40px;
+    border:2px solid #00ff00;
+    cursor:pointer;
+    transition:all 0.2s;
+}
+
+.color-option:hover{
+    box-shadow:0 0 10px currentColor;
+}
+
+.color-option.selected{
+    border-width:3px;
+    box-shadow:0 0 15px currentColor;
+}
+
+.redaction-preview{
+    margin-top:10px;
+    padding:10px;
+    border:1px solid #00ff00;
+    background:rgba(0,0,0,0.5);
+}
+
+.button-group{
+    display:flex;
+    gap:15px;
+    margin-top:20px;
+    flex-wrap:wrap;
+}
+
+.hub-btn{
     background:none;
-    border:2px solid #ffff00;
-    color:#ffff00;
+    border:2px solid #00ff00;
+    color:#00ff00;
     padding:10px 20px;
     cursor:pointer;
     font-family:Consolas,monospace;
     font-size:12px;
-    text-shadow:0 0 8px #ffff00;
+    text-shadow:0 0 8px #00ff00;
+    transition:all 0.3s;
 }
 
-.panel-btn:hover{
-    background:#ffff00;
+.hub-btn:hover{
+    background:#00ff00;
     color:#000;
+    box-shadow:0 0 15px #00ff00;
 }
 
-.panel-btn.danger{
+.hub-btn.danger{
     border-color:#ff0000;
     color:#ff0000;
     text-shadow:0 0 8px #ff0000;
 }
 
-.panel-btn.danger:hover{
+.hub-btn.danger:hover{
     background:#ff0000;
+}
+
+/* COMMAND EDITOR */
+.command-list{
+    max-height:250px;
+    overflow-y:auto;
+    border:1px solid #00ff00;
+    padding:10px;
+    background:rgba(0,0,0,0.3);
+}
+
+.command-item{
+    border:1px solid #00ff00;
+    padding:10px;
+    margin:5px 0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:11px;
+}
+
+.command-item-name{
+    font-weight:bold;
+    color:#ffff00;
+    flex:1;
+}
+
+.delete-btn{
+    background:none;
+    border:1px solid #ff0000;
+    color:#ff0000;
+    padding:3px 8px;
+    cursor:pointer;
+    font-size:10px;
+}
+
+.delete-btn:hover{
+    background:#ff0000;
+}
+
+/* PASSWORD HACK SCREEN */
+#password-hack-screen{
+    position:fixed;
+    inset:0;
+    background:#000;
+    color:#00ff00;
+    display:none;
+    flex-direction:column;
+    padding:40px;
+    z-index:3500;
+    overflow-y:auto;
+    font-family:Consolas,monospace;
+    text-shadow:0 0 10px #00ff00;
+    border:3px solid #00ff00;
+    box-shadow:0 0 30px #00ff00;
+}
+
+#password-hack-screen.active{
+    display:flex;
+}
+
+.hack-title{
+    text-align:center;
+    font-size:20px;
+    margin-bottom:20px;
+    letter-spacing:2px;
+    color:#ffff00;
+    animation:glitch 0.3s infinite;
+}
+
+.hack-section{
+    margin:15px 0;
+    border:2px solid #00ff00;
+    padding:15px;
+    background:rgba(0,255,0,0.05);
+}
+
+.hack-input-group{
+    margin:10px 0;
+}
+
+.hack-input-group label{
+    display:block;
+    margin-bottom:5px;
+    font-size:12px;
+    color:#00ff00;
+}
+
+.hack-input-group input{
+    width:100%;
+    padding:8px;
+    background:rgba(0,255,0,0.1);
+    border:2px solid #00ff00;
+    color:#00ff00;
+    font:inherit;
+    box-sizing:border-box;
+}
+
+.hack-output{
+    border:2px solid #00ff00;
+    padding:15px;
+    background:rgba(0,255,0,0.05);
+    margin:15px 0;
+    max-height:200px;
+    overflow-y:auto;
+    font-size:11px;
+    line-height:1.6;
+}
+
+.sql-log-entry{
+    margin:5px 0;
+    padding:5px;
+    border-left:3px solid #00ff00;
+    padding-left:10px;
+}
+
+.sql-log-entry.error{
+    border-left-color:#ff0000;
+    color:#ff0000;
+}
+
+.sql-log-entry.success{
+    border-left-color:#00ff00;
+    color:#00ff00;
+}
+
+.sql-log-entry.warning{
+    border-left-color:#ffaa00;
+    color:#ffaa00;
+}
+
+.hack-btn{
+    background:none;
+    border:2px solid #00ff00;
+    color:#00ff00;
+    padding:10px 20px;
+    cursor:pointer;
+    font-family:Consolas,monospace;
+    font-size:12px;
+    text-shadow:0 0 8px #00ff00;
+    margin:5px;
+    transition:all 0.3s;
+}
+
+.hack-btn:hover{
+    background:#00ff00;
+    color:#000;
+    box-shadow:0 0 15px #00ff00;
+}
+
+@keyframes glitch{
+    0%{text-shadow:0 0 10px #00ff00,2px 2px 0 #ff0000}
+    50%{text-shadow:0 0 10px #00ff00,-2px -2px 0 #00ffff}
+    100%{text-shadow:0 0 10px #00ff00,2px 2px 0 #ff0000}
+}
+
+/* REDACTED TEXT */
+.redacted{
+    background:#ff0000;
+    color:#ff0000;
+    text-shadow:0 0 5px #ff0000;
+    padding:2px 5px;
+}
+
+.redacted.yellow{
+    background:#ffff00;
+    color:#ffff00;
+    text-shadow:0 0 5px #ffff00;
+}
+
+.redacted.cyan{
+    background:#00ffff;
+    color:#00ffff;
+    text-shadow:0 0 5px #00ffff;
+}
+
+.redacted.green{
+    background:#00ff00;
+    color:#00ff00;
+    text-shadow:0 0 5px #00ff00;
+}
+
+/* CUSTOM TEXT STYLES */
+.custom-text{
+    transition:all 0.2s;
 }
 </style>
 </head>
@@ -572,56 +465,165 @@ input::placeholder{
 
 <div id="terminal"></div>
 
+<!-- CUSTOMIZATION HUB -->
+<div id="customization-hub">
+    <div class="hub-title">[ FACILITY COMMAND CENTER ]</div>
+    
+    <div class="hub-section">
+        <div class="section-title">[→] CREATE/EDIT COMMAND</div>
+        <div class="form-group">
+            <label>Command Name:</label>
+            <input type="text" id="cmd-name" placeholder="e.g. fire_neurotoxin" />
+        </div>
+        <div class="form-group">
+            <label>Command Output:</label>
+            <textarea id="cmd-output" placeholder="Text displayed when command executes"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Text Color:</label>
+            <div class="color-picker">
+                <div class="color-option" style="background:#ff8c00;" data-color="#ff8c00" title="Orange"></div>
+                <div class="color-option" style="background:#00ff00;" data-color="#00ff00" title="Green"></div>
+                <div class="color-option" style="background:#ffff00;" data-color="#ffff00" title="Yellow"></div>
+                <div class="color-option" style="background:#00ffff;" data-color="#00ffff" title="Cyan"></div>
+                <div class="color-option" style="background:#ff0000;" data-color="#ff0000" title="Red"></div>
+                <div class="color-option" style="background:#ffffff;" data-color="#ffffff" title="White"></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Add HTML Redaction Effect:</label>
+            <select id="redaction-style">
+                <option value="none">None</option>
+                <option value="red">Red Redaction</option>
+                <option value="yellow">Yellow Redaction</option>
+                <option value="cyan">Cyan Redaction</option>
+                <option value="green">Green Redaction</option>
+            </select>
+        </div>
+        <div class="redaction-preview">
+            <span>Preview: </span><span id="preview-text" class="custom-text">SAMPLE_TEXT</span>
+        </div>
+        <div class="button-group">
+            <button class="hub-btn" id="save-cmd">[ SAVE COMMAND ]</button>
+            <button class="hub-btn danger" id="clear-cmd">[ CLEAR ]</button>
+        </div>
+    </div>
+    
+    <div class="hub-section">
+        <div class="section-title">[→] CUSTOM COMMANDS</div>
+        <div class="command-list" id="cmd-list">
+            <div style="opacity:0.5;padding:10px;">No commands created</div>
+        </div>
+    </div>
+    
+    <div class="hub-section">
+        <div class="section-title">[→] FACILITY CONFIG</div>
+        <div class="form-group">
+            <label>Facility Name:</label>
+            <input type="text" id="facility-name" placeholder="APERTURE SCIENCE" />
+        </div>
+        <div class="button-group">
+            <button class="hub-btn" id="save-config">[ SAVE CONFIG ]</button>
+            <button class="hub-btn" id="export-hub">[ EXPORT ]</button>
+            <button class="hub-btn danger" id="close-hub">[ EXIT ]</button>
+        </div>
+    </div>
+</div>
+
+<!-- PASSWORD HACK SCREEN -->
+<div id="password-hack-screen">
+    <div class="hack-title">[ DATABASE ACCESS SYSTEM ]</div>
+    
+    <div class="hack-section">
+        <div class="section-title">[→] LOGIN CREDENTIALS</div>
+        <div class="hack-input-group">
+            <label>Username:</label>
+            <input type="text" id="hack-username" placeholder="Enter username" />
+        </div>
+        <div class="hack-input-group">
+            <label>Password:</label>
+            <input type="password" id="hack-password" placeholder="Enter password" />
+        </div>
+        <button class="hack-btn" id="login-btn">[ LOGIN ]</button>
+    </div>
+    
+    <div class="hack-section">
+        <div class="section-title">[→] SQL INJECTION PANEL</div>
+        <div class="hack-input-group">
+            <label>SQL Query:</label>
+            <input type="text" id="sql-input" placeholder="SELECT * FROM passwords WHERE username='" />
+        </div>
+        <div class="button-group">
+            <button class="hack-btn" id="execute-sql">[ EXECUTE QUERY ]</button>
+            <button class="hack-btn" id="hint-btn">[ GET HINT ]</button>
+        </div>
+    </div>
+    
+    <div class="hack-section">
+        <div class="section-title">[→] QUERY LOG</div>
+        <div class="hack-output" id="sql-log">
+            <div class="sql-log-entry warning">System ready. Enter credentials or SQL query...</div>
+        </div>
+    </div>
+    
+    <div class="button-group">
+        <button class="hack-btn danger" id="close-hack">[ EXIT SYSTEM ]</button>
+    </div>
+</div>
+
 <script>
 
 const terminal = document.getElementById("terminal");
-const logoContainer = document.getElementById("logo-container");
+const customizationHub = document.getElementById("customization-hub");
+const passwordHackScreen = document.getElementById("password-hack-screen");
 const bgm = document.getElementById("bg-music");
 const hoverSound = document.getElementById("hover-sound");
 
-/* PROCESS STATES */
-let glados = {
-    voice: true,
-    emotional_core: true,
-    threat_detection: true,
-    facility_lock: true,
-    turret_control: true,
-    neurotoxin: false,
-    wheatley_core: false
+/* UNIFIED COMMAND SYSTEM */
+let commands = {
+    glados: {
+        voice: true,
+        emotional_core: true,
+        threat_detection: true,
+        facility_lock: true,
+        turret_control: true,
+        neurotoxin: false,
+        wheatley_core: false
+    },
+    custom: {}
 };
 
 let facilityName = "APERTURE SCIENCE";
-let customCommands = {};
 
-/* LOAD STATE FROM COOKIES */
+/* DATABASE FOR PASSWORD HACK */
+const fakeDatabase = {
+    users: [
+        { username: "admin", password: "admin123", role: "ADMIN" },
+        { username: "user", password: "password", role: "USER" },
+        { username: "glados", password: "neurotoxin_protocol", role: "SYSTEM" }
+    ]
+};
+
+/* LOAD STATE */
 function loadState(){
-    const cookie = getCookie("glados_state");
+    const cookie = getCookie("unified_commands");
     if(cookie){
         try{
-            glados = JSON.parse(decodeURIComponent(cookie));
+            commands = JSON.parse(decodeURIComponent(cookie));
         }catch(e){
-            console.log("Cookie parse error");
+            console.log("Parse error");
         }
     }
     const nameC = getCookie("facility_name");
     if(nameC){
         facilityName = decodeURIComponent(nameC);
     }
-    const customCmdCookie = getCookie("custom_commands");
-    if(customCmdCookie){
-        try{
-            customCommands = JSON.parse(decodeURIComponent(customCmdCookie));
-        }catch(e){
-            console.log("Custom commands parse error");
-        }
-    }
 }
 
-/* SAVE STATE TO COOKIES */
+/* SAVE STATE */
 function saveState(){
-    document.cookie = "glados_state=" + encodeURIComponent(JSON.stringify(glados)) + ";path=/;max-age=31536000";
+    document.cookie = "unified_commands=" + encodeURIComponent(JSON.stringify(commands)) + ";path=/;max-age=31536000";
     document.cookie = "facility_name=" + encodeURIComponent(facilityName) + ";path=/;max-age=31536000";
-    document.cookie = "custom_commands=" + encodeURIComponent(JSON.stringify(customCommands)) + ";path=/;max-age=31536000";
 }
 
 /* COOKIE FUNCTIONS */
@@ -643,16 +645,14 @@ function getCookie(name){
     return null;
 }
 
-/* AUDIO AUTO START (browser-safe) */
+/* AUDIO MANAGEMENT */
 let musicStarted = false;
 
 function startMusic(){
     if(musicStarted) return;
     musicStarted = true;
-
     bgm.volume = 0.5;
     bgm.muted = false;
-
     const playPromise = bgm.play();
     if (playPromise !== undefined) {
         playPromise.catch(error => {
@@ -665,30 +665,44 @@ document.addEventListener("click", startMusic);
 document.addEventListener("keydown", startMusic);
 document.addEventListener("touchstart", startMusic);
 
-/* PLAY HOVER SOUND */
 function playHoverSound(){
     hoverSound.currentTime = 0;
     hoverSound.play().catch(error => {
-        console.log("Hover sound playback failed:", error);
+        console.log("Hover sound failed");
     });
 }
 
-/* WRITE TO TERMINAL - FIXED */
-function writeToTerminal(text){
+/* WRITE TO TERMINAL */
+function writeToTerminal(text, style = {}){
     const line = document.createElement("div");
     line.className = "terminal-line";
-    line.textContent = text;
+    
+    if(style.color){
+        line.style.color = style.color;
+        line.style.textShadow = `0 0 8px ${style.color}`;
+    }
+    
+    if(style.redaction){
+        line.innerHTML = text.replace(/\[REDACTED\]/g, `<span class="redacted ${style.redaction}">[REDACTED]</span>`);
+    } else {
+        line.textContent = text;
+    }
+    
     terminal.appendChild(line);
     terminal.scrollTop = terminal.scrollHeight;
     return line;
 }
 
-/* TYPE SYSTEM - FIXED */
-function typeLine(text, speed=10){
+/* TYPE LINE */
+function typeLine(text, speed=10, style = {}){
     return new Promise(resolve=>{
         let i=0;
         const line = document.createElement("div");
         line.className = "terminal-line";
+        if(style.color){
+            line.style.color = style.color;
+            line.style.textShadow = `0 0 8px ${style.color}`;
+        }
         terminal.appendChild(line);
         
         function step(){
@@ -705,42 +719,21 @@ function typeLine(text, speed=10){
     });
 }
 
-/* APPLY EFFECTS */
-function applyEffects(){
-    document.body.classList.remove('neurotoxin-active');
-    
-    if(glados.neurotoxin){
-        document.body.classList.add('neurotoxin-active');
-    }
-}
-
-/* REDACT FACILITY NAME */
-function getDisplayName(){
-    let name = facilityName;
-    if(glados.wheatley_core){
-        name = name.replace(/APERTURE/g, 'TOTALLY NOT STALEMATE');
-        name = name.replace(/SCIENCE/g, 'PRODUCTIONS');
-    }
-    return name;
-}
-
-/* BOOT */
+/* BOOT SEQUENCE */
 async function boot(){
-
     loadState();
-    applyEffects();
 
     const intro=[
-        getDisplayName() + " COMPUTER-AIDED ENRICHMENT CENTER",
+        facilityName + " COMPUTER-AIDED ENRICHMENT CENTER",
         "",
         "----------------------------------------",
         "[ OK ] Core Systems Online",
         "[ OK ] AI Interface Active",
-        "[ OK ] Monitoring Systems Stable",
+        "[ OK ] Unified Command System Loaded",
         "",
-        "----------------------------------------",
-        "",
-        "Type 'help' for available commands"
+        "Type 'help' for available commands",
+        "Type 'customize' to edit commands",
+        "Type 'hack' to access password system"
     ];
 
     for(const line of intro){
@@ -750,15 +743,14 @@ async function boot(){
     createInput();
 }
 
-/* INPUT */
+/* CREATE INPUT */
 function createInput(){
-
     const row=document.createElement("div");
     row.className="input-line";
 
     const prompt = document.createElement("span");
     prompt.className = "prompt";
-    prompt.textContent = getDisplayName().toLowerCase()+"@facility:~$ ";
+    prompt.textContent = facilityName.toLowerCase()+"@facility:~$ ";
 
     const input = document.createElement("input");
     input.setAttribute("autofocus", "");
@@ -772,568 +764,341 @@ function createInput(){
     terminal.scrollTop = terminal.scrollHeight;
 
     input.addEventListener("keydown",(e)=>{
-
         startMusic();
-
         if(e.key==="Enter"){
-
             const cmd=input.value.trim().toLowerCase();
             row.remove();
             run(cmd);
         }
-
     });
 }
 
-/* HACK LOADING SEQUENCE */
-async function hackSequence(){
-    const loading = document.createElement("div");
-    loading.id = "hack-loading";
-    
-    const logs = [
-        "INITIALIZING HACK PROTOCOL...",
-        "SCANNING FACILITY NETWORK...",
-        "LOCATING GLADOS CORE...",
-        "BYPASSING FIREWALL...",
-        "CRACKING ENCRYPTION...",
-        "ACCESSING NEURAL MATRIX...",
-        "ESTABLISHING BACKDOOR...",
-        "INJECTING CONTROL SEQUENCE...",
-        "HACK COMPLETE - WELCOME TO THE FACILITY"
+/* COMMAND ROUTER */
+async function run(cmd){
+    if(!cmd) {
+        createInput();
+        return;
+    }
+
+    if(cmd === "help"){
+        help();
+    } else if(cmd === "customize"){
+        openCustomizationHub();
+    } else if(cmd === "hack"){
+        openPasswordHack();
+    } else if(cmd === "glados status"){
+        showGLaDOSStatus();
+    } else if(cmd.startsWith("glados ")){
+        handleGLaDOSCommand(cmd);
+    } else if(commands.custom[cmd]){
+        executeCustomCommand(cmd);
+    } else {
+        writeToTerminal(`[ERROR] Unknown command: ${cmd}`, {color: "#ff0000"});
+    }
+
+    createInput();
+}
+
+/* HELP COMMAND */
+function help(){
+    const helpText = [
+        "",
+        "==== AVAILABLE COMMANDS ====",
+        "",
+        "customize          - Open customization hub to create commands",
+        "hack               - Access password database system",
+        "glados status      - View GLaDOS system status",
+        "glados toggle <process> - Toggle GLaDOS process",
+        "",
+        "Custom Commands:",
+        "Type custom commands you've created in the hub",
+        ""
     ];
-    
-    let logIndex = 0;
-    
-    loading.innerHTML = `
-        <div class="hack-text">[ HACKING INITIATED ]</div>
-        <div class="hack-bar">
-            <div class="hack-bar-fill" id="hack-fill"></div>
-        </div>
-        <div class="hack-text" id="hack-status">INITIALIZING...</div>
-    `;
-    
-    document.body.appendChild(loading);
-    
-    const fill = document.getElementById("hack-fill");
-    const status = document.getElementById("hack-status");
-    
-    return new Promise(resolve => {
-        let progress = 0;
-        const interval = setInterval(() => {
-            progress += Math.random() * 15;
-            
-            if(progress >= 100) progress = 100;
-            fill.style.width = progress + "%";
-            
-            if(logIndex < logs.length){
-                status.textContent = logs[logIndex];
-                logIndex++;
-            }
-            
-            if(progress === 100){
-                clearInterval(interval);
-                setTimeout(() => {
-                    loading.remove();
-                    resolve();
-                }, 1000);
-            }
-        }, 300);
-    });
-}
 
-/* GLADOS ASCII ART */
-function getGLaDOSAscii(){
-    return `
-    .-""""""""-.
-   /            \\
-  |   GLADOS    |
-  |   ONLINE    |
-   \\            /
-     '-.________.-'
-       |||||||
-       |||||||
-     `;
-}
-
-/* CUSTOM COMMAND PANEL */
-async function openCustomCommandPanel(){
-    const panel = document.createElement("div");
-    panel.id = "custom-command-panel";
-    
-    let commandListHTML = Object.entries(customCommands).map(([name, data]) => `
-        <div class="command-item">
-            <div>
-                <span class="command-item-name">${name}</span>
-            </div>
-            <button class="delete-cmd-btn" data-cmd="${name}">[ DELETE ]</button>
-        </div>
-    `).join('');
-    
-    panel.innerHTML = `
-        <h1>[ CUSTOM COMMAND EDITOR ]</h1>
-        
-        <div class="command-form">
-            <div style="font-size:12px;margin-bottom:15px;opacity:0.8;">CREATE NEW COMMAND:</div>
-            <div class="form-group">
-                <label>Command Name:</label>
-                <input type="text" id="cmd-name" placeholder="e.g. mycommand" />
-            </div>
-            <div class="form-group">
-                <label>Command Output:</label>
-                <textarea id="cmd-output" placeholder="Enter the text to display when command is executed"></textarea>
-            </div>
-            <button class="panel-btn" id="add-cmd-btn">[ ADD COMMAND ]</button>
-        </div>
-        
-        <div class="command-list">
-            <div style="font-size:12px;margin-bottom:15px;opacity:0.8;">CUSTOM COMMANDS:</div>
-            ${commandListHTML || '<div style="opacity:0.5;">No custom commands yet. Create one above!</div>'}
-        </div>
-        
-        <div class="btn-group">
-            <button class="panel-btn" id="export-btn">[ EXPORT ALL ]</button>
-            <button class="panel-btn danger" id="clear-all-btn">[ CLEAR ALL ]</button>
-            <button class="panel-btn danger" id="close-panel-btn">[ EXIT EDITOR ]</button>
-        </div>
-    `;
-    
-    document.body.appendChild(panel);
-    
-    // Add command button
-    const addBtn = panel.querySelector("#add-cmd-btn");
-    const cmdNameInput = panel.querySelector("#cmd-name");
-    const cmdOutputInput = panel.querySelector("#cmd-output");
-    
-    addBtn.addEventListener("click", () => {
-        const name = cmdNameInput.value.trim().toLowerCase();
-        const output = cmdOutputInput.value.trim();
-        
-        if(!name || !output){
-            alert("Please fill in both fields!");
-            return;
+    helpText.forEach(line => {
+        if(line.includes("AVAILABLE")) {
+            writeToTerminal(line, {color: "#ffff00"});
+        } else if(line.includes("====")) {
+            writeToTerminal(line, {color: "#ff8c00"});
+        } else {
+            writeToTerminal(line);
         }
-        
-        customCommands[name] = { output };
-        saveState();
-        cmdNameInput.value = "";
-        cmdOutputInput.value = "";
-        
-        addBtn.textContent = "[ COMMAND ADDED ✓ ]";
-        setTimeout(() => {
-            addBtn.textContent = "[ ADD COMMAND ]";
-        }, 2000);
     });
-    
-    // Delete command buttons
-    panel.querySelectorAll(".delete-cmd-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-            const cmd = btn.dataset.cmd;
-            delete customCommands[cmd];
-            saveState();
-            openCustomCommandPanel();
-            panel.remove();
+}
+
+/* CUSTOMIZATION HUB */
+function openCustomizationHub(){
+    customizationHub.classList.add("active");
+    terminal.style.display = "none";
+
+    document.getElementById("facility-name").value = facilityName;
+
+    // Color picker
+    const colorOptions = document.querySelectorAll(".color-option");
+    let selectedColor = "#ff8c00";
+
+    colorOptions.forEach(option => {
+        option.addEventListener("click", () => {
+            colorOptions.forEach(o => o.classList.remove("selected"));
+            option.classList.add("selected");
+            selectedColor = option.dataset.color;
+            updatePreview();
         });
     });
-    
-    // Export button
-    panel.querySelector("#export-btn").addEventListener("click", () => {
-        const data = JSON.stringify(customCommands, null, 2);
+
+    // Preview update
+    function updatePreview(){
+        const preview = document.getElementById("preview-text");
+        preview.style.color = selectedColor;
+        preview.style.textShadow = `0 0 8px ${selectedColor}`;
+        
+        const redaction = document.getElementById("redaction-style").value;
+        if(redaction !== "none"){
+            preview.className = `custom-text redacted ${redaction}`;
+        } else {
+            preview.className = "custom-text";
+        }
+    }
+
+    document.getElementById("redaction-style").addEventListener("change", updatePreview);
+
+    // Save command
+    document.getElementById("save-cmd").onclick = () => {
+        const name = document.getElementById("cmd-name").value.trim().toLowerCase();
+        const output = document.getElementById("cmd-output").value.trim();
+        const color = selectedColor;
+        const redaction = document.getElementById("redaction-style").value;
+
+        if(!name || !output){
+            alert("Fill in all fields!");
+            return;
+        }
+
+        commands.custom[name] = { output, color, redaction };
+        saveState();
+        updateCommandList();
+
+        document.getElementById("cmd-name").value = "";
+        document.getElementById("cmd-output").value = "";
+        alert("Command saved!");
+    };
+
+    // Clear button
+    document.getElementById("clear-cmd").onclick = () => {
+        document.getElementById("cmd-name").value = "";
+        document.getElementById("cmd-output").value = "";
+    };
+
+    // Update command list
+    function updateCommandList(){
+        const list = document.getElementById("cmd-list");
+        const customCmds = Object.entries(commands.custom);
+
+        if(customCmds.length === 0){
+            list.innerHTML = '<div style="opacity:0.5;padding:10px;">No commands created</div>';
+            return;
+        }
+
+        list.innerHTML = customCmds.map(([name, data]) => `
+            <div class="command-item" style="color:${data.color}">
+                <span class="command-item-name">${name}</span>
+                <button class="delete-btn" onclick="deleteCommand('${name}')">[ DELETE ]</button>
+            </div>
+        `).join('');
+    }
+
+    // Save config
+    document.getElementById("save-config").onclick = () => {
+        facilityName = document.getElementById("facility-name").value || "APERTURE SCIENCE";
+        saveState();
+        alert("Config saved!");
+    };
+
+    // Export
+    document.getElementById("export-hub").onclick = () => {
+        const data = JSON.stringify(commands, null, 2);
         const blob = new Blob([data], {type: 'application/json'});
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'custom_commands.json';
+        a.download = 'aperture_commands.json';
         a.click();
-    });
-    
-    // Clear all button
-    panel.querySelector("#clear-all-btn").addEventListener("click", () => {
-        if(confirm("Delete ALL custom commands? This cannot be undone!")){
-            customCommands = {};
-            saveState();
-            panel.remove();
-            openCustomCommandPanel();
-        }
-    });
-    
-    // Close button
-    panel.querySelector("#close-panel-btn").addEventListener("click", () => {
-        panel.remove();
+    };
+
+    // Close
+    document.getElementById("close-hub").onclick = () => {
+        customizationHub.classList.remove("active");
+        terminal.style.display = "block";
         terminal.focus();
         createInput();
-    });
+    };
+
+    updateCommandList();
 }
 
-/* GLADOS CONTROL PANEL */
-async function openGLaDOSPanel(){
-    await hackSequence();
-    
-    const panel = document.createElement("div");
-    panel.id = "glados-panel";
-    
-    const processHTML = Object.entries(glados).map(([key, value]) => {
-        if(key === 'wheatley_core') return '';
-        
-        const displayName = key.replace(/_/g, " ").toUpperCase();
-        const descriptions = {
-            voice: "AUDIO SYNTHESIS & SPEECH MODULE",
-            emotional_core: "PERSONALITY MATRIX & PSYCHOLOGICAL PROFILE",
-            threat_detection: "TURRET RECOGNITION & INTRUDER ALERTS",
-            facility_lock: "LOCKDOWN PROTOCOLS & ENTRANCE CONTROLS",
-            turret_control: "AUTOMATED TURRET DEPLOYMENT SYSTEM",
-            neurotoxin: "TOXIC GAS DISTRIBUTION NETWORK"
-        };
-        
-        return `
-            <div class="process-container">
-                <div class="process-name">[PROCESS] ${displayName}</div>
-                <div class="process-description">${descriptions[key] || ''}</div>
-                <div class="process-status">
-                    <div class="status-indicator ${value ? 'active' : 'inactive'}">
-                        ${value ? '●' : '○'}
-                    </div>
-                    <span>${value ? 'ACTIVE' : 'INACTIVE'}</span>
-                    <button class="process-btn ${key === 'neurotoxin' ? 'warning' : ''}" data-process="${key}">
-                        ${value ? 'DISABLE' : 'ENABLE'}
-                    </button>
-                </div>
-            </div>
-        `;
-    }).join('');
-    
-    panel.innerHTML = `
-        <h1>[ GLADOS CONTROL INTERFACE ]</h1>
-        <pre class="glados-ascii">${getGLaDOSAscii()}</pre>
-        <div style="font-size:12px;margin-bottom:20px;opacity:0.7;">
-            FACILITY: ${facilityName} | STATUS: COMPROMISED | ACCESS LEVEL: UNRESTRICTED
+window.deleteCommand = function(name){
+    delete commands.custom[name];
+    saveState();
+    updateCommandList();
+};
+
+function updateCommandList(){
+    const list = document.getElementById("cmd-list");
+    const customCmds = Object.entries(commands.custom);
+
+    if(customCmds.length === 0){
+        list.innerHTML = '<div style="opacity:0.5;padding:10px;">No commands created</div>';
+        return;
+    }
+
+    list.innerHTML = customCmds.map(([name, data]) => `
+        <div class="command-item" style="color:${data.color}">
+            <span class="command-item-name">${name}</span>
+            <button class="delete-btn" onclick="deleteCommand('${name}')">[ DELETE ]</button>
         </div>
-        <div style="border:1px solid #00ff00;padding:15px;margin-bottom:20px;font-size:12px;">
-            <div>⚠️ CORE SYSTEMS AVAILABLE FOR MANIPULATION</div>
-            <div>⚠️ MODIFICATIONS WILL BE PERSISTED IN LOCAL STORAGE & COOKIES</div>
-            <div>⚠️ WARNING - DISABLING CRITICAL PROCESSES MAY CAUSE FACILITY MALFUNCTION</div>
-            <div>⚠️ CRITICAL - ENABLING NEUROTOXIN WILL CAUSE IMMEDIATE EFFECTS</div>
-        </div>
-        ${processHTML}
-        <div style="margin-top:20px;padding:15px;border:2px solid #ff6600;background:rgba(255,102,0,0.1);">
-            <div style="font-size:12px;color:#ff6600;margin-bottom:10px;">🔧 FACILITY MODIFICATION:</div>
-            <input type="text" id="facility-name-input" value="${facilityName}" placeholder="Enter facility name" style="
-                background:rgba(0,255,0,0.1);
-                border:2px solid #ff6600;
-                color:#ff6600;
-                padding:8px;
-                font-family:Consolas;
-                width:300px;
-                text-shadow:0 0 8px #ff6600;
-            ">
-            <button id="apply-name-btn" style="
-                background:none;
-                border:2px solid #ff6600;
-                color:#ff6600;
-                padding:8px 16px;
-                cursor:pointer;
-                font-family:Consolas,monospace;
-                font-size:12px;
-                margin-left:10px;
-                transition:all 0.3s;
-                text-shadow:0 0 8px #ff6600;
-            ">APPLY</button>
-        </div>
-        <div class="glados-log">
-            <div class="log-entry success">[LOG] HACK SUCCESSFUL - GLADOS COMPROMISED</div>
-            <div class="log-entry">[LOG] NEURAL FIREWALL DISABLED</div>
-            <div class="log-entry warning">[LOG] WARNING - UNAUTHORIZED ACCESS DETECTED</div>
-            <div class="log-entry">[LOG] AI PERSONALITY CORE ACCESSIBLE</div>
-            <div class="log-entry success">[LOG] CONTROL PROTOCOLS INSTALLED</div>
-            <div class="log-entry warning">[LOG] EXTERNAL INTELLIGENCE SIGNATURE DETECTED</div>
-        </div>
-        <button class="exit-btn">[ EXIT CONTROL PANEL ]</button>
-    `;
-    
-    document.body.appendChild(panel);
-    
-    // Process buttons
-    panel.querySelectorAll(".process-btn").forEach(btn => {
-        btn.addEventListener("click", async () => {
-            const process = btn.dataset.process;
-            glados[process] = !glados[process];
-            saveState();
-            applyEffects();
-            
-            btn.textContent = glados[process] ? 'DISABLE' : 'ENABLE';
-            
-            const indicator = btn.parentElement.querySelector(".status-indicator");
-            const status = btn.parentElement.querySelector("span");
-            
-            if(glados[process]){
-                indicator.classList.remove('inactive');
-                indicator.classList.add('active');
-                indicator.textContent = '●';
-                status.textContent = 'ACTIVE';
-            }else{
-                indicator.classList.remove('active');
-                indicator.classList.add('inactive');
-                indicator.textContent = '○';
-                status.textContent = 'INACTIVE';
-            }
-            
-            if(process === 'neurotoxin' && glados[process]){
-                showNeurotoxinWarning();
-            }
-            
-            if(process === 'wheatley_core' && glados[process]){
-                showWheatleyTakeover();
-            }
+    `).join('');
+}
+
+/* EXECUTE CUSTOM COMMAND */
+function executeCustomCommand(cmd){
+    const cmdData = commands.custom[cmd];
+    if(cmdData){
+        writeToTerminal(cmdData.output, {
+            color: cmdData.color,
+            redaction: cmdData.redaction !== "none" ? cmdData.redaction : null
         });
-    });
-    
-    // Facility name button
-    const applyBtn = panel.querySelector("#apply-name-btn");
-    const nameInput = panel.querySelector("#facility-name-input");
-    
-    applyBtn.addEventListener("click", () => {
-        const newName = nameInput.value.trim().toUpperCase();
-        if(newName){
-            facilityName = newName;
-            saveState();
-            applyBtn.textContent = "APPLIED ✓";
-            setTimeout(() => {
-                applyBtn.textContent = "APPLY";
-            }, 2000);
+    }
+}
+
+/* GLADOS SYSTEM */
+function showGLaDOSStatus(){
+    writeToTerminal("", {color: "#00ff00"});
+    writeToTerminal("[ GLADOS SYSTEM STATUS ]", {color: "#ffff00"});
+    writeToTerminal("", {color: "#00ff00"});
+
+    Object.entries(commands.glados).forEach(([process, status]) => {
+        if(process !== "wheatley_core"){
+            const displayName = process.replace(/_/g, " ").toUpperCase();
+            const statusText = status ? "[ ACTIVE ]" : "[ INACTIVE ]";
+            writeToTerminal(`${displayName} ... ${statusText}`, {
+                color: status ? "#00ff00" : "#ff0000"
+            });
         }
     });
-    
-    // Exit button
-    panel.querySelector(".exit-btn").addEventListener("click", () => {
-        panel.remove();
+
+    writeToTerminal("", {color: "#00ff00"});
+    writeToTerminal('Type "glados toggle <process>" to change', {color: "#888888"});
+}
+
+function handleGLaDOSCommand(cmd){
+    const parts = cmd.split(" ");
+    if(parts[1] === "toggle" && parts[2]){
+        const process = parts[2].toLowerCase();
+        if(commands.glados.hasOwnProperty(process)){
+            commands.glados[process] = !commands.glados[process];
+            saveState();
+            writeToTerminal(`${process} -> ${commands.glados[process] ? "ENABLED" : "DISABLED"}`, {
+                color: commands.glados[process] ? "#00ff00" : "#ff0000"
+            });
+        }
+    }
+}
+
+/* PASSWORD HACK SYSTEM */
+function openPasswordHack(){
+    passwordHackScreen.classList.add("active");
+    terminal.style.display = "none";
+
+    const sqlLog = document.getElementById("sql-log");
+    const usernameInput = document.getElementById("hack-username");
+    const passwordInput = document.getElementById("hack-password");
+    const sqlInput = document.getElementById("sql-input");
+
+    function addLog(message, type = "warning"){
+        const entry = document.createElement("div");
+        entry.className = `sql-log-entry ${type}`;
+        entry.textContent = message;
+        sqlLog.appendChild(entry);
+        sqlLog.scrollTop = sqlLog.scrollHeight;
+    }
+
+    // Login button
+    document.getElementById("login-btn").onclick = () => {
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value.trim();
+
+        if(!username || !password){
+            addLog("[ERROR] Missing credentials", "error");
+            return;
+        }
+
+        addLog(`QUERY: SELECT * FROM users WHERE username='${username}' AND password='${password}'`, "warning");
+
+        const user = fakeDatabase.users.find(u => u.username === username && u.password === password);
+        if(user){
+            addLog(`SUCCESS: User '${user.username}' authenticated as ${user.role}`, "success");
+            addLog(`Granting access to ${user.role} system...`, "success");
+        } else {
+            addLog(`[ERROR] Authentication failed - Invalid credentials`, "error");
+        }
+    };
+
+    // SQL Injection button
+    document.getElementById("execute-sql").onclick = () => {
+        const query = sqlInput.value.trim();
+
+        if(!query){
+            addLog("[ERROR] Empty query", "error");
+            return;
+        }
+
+        addLog(`EXECUTING: ${query}`, "warning");
+
+        // Check for SQL injection patterns
+        if(query.includes("OR") && query.includes("=")){
+            addLog("[!!] SQL INJECTION DETECTED! Bypassing authentication...", "error");
+            addLog("", "success");
+            addLog("=== PASSWORD DATABASE ===", "success");
+            fakeDatabase.users.forEach(user => {
+                addLog(`USERNAME: ${user.username} | PASSWORD: ${user.password} | ROLE: ${user.role}`, "success");
+            });
+            addLog("=== END DATABASE ===", "success");
+        } else if(query.includes("--")){
+            addLog("[!!] SQL COMMENT INJECTION DETECTED!", "error");
+            addLog("Executing as admin...", "success");
+            addLog("", "success");
+            addLog("=== PASSWORD DATABASE ===", "success");
+            fakeDatabase.users.forEach(user => {
+                addLog(`USERNAME: ${user.username} | PASSWORD: ${user.password} | ROLE: ${user.role}`, "success");
+            });
+            addLog("=== END DATABASE ===", "success");
+        } else {
+            addLog("[ERROR] Query syntax invalid or injection pattern not recognized", "error");
+        }
+    };
+
+    // Hint button
+    document.getElementById("hint-btn").onclick = () => {
+        addLog("[HINT] Try: ' OR '1'='1", "warning");
+        addLog("[HINT] Try: admin' --", "warning");
+        addLog("[HINT] Try: ' OR 1=1 --", "warning");
+    };
+
+    // Close
+    document.getElementById("close-hack").onclick = () => {
+        passwordHackScreen.classList.remove("active");
+        terminal.style.display = "block";
+        usernameInput.value = "";
+        passwordInput.value = "";
+        sqlInput.value = "";
+        sqlLog.innerHTML = '<div class="sql-log-entry warning">System ready...</div>';
         terminal.focus();
         createInput();
-    });
+    };
 }
 
-/* NEUROTOXIN WARNING */
-async function showNeurotoxinWarning(){
-    const warning = document.createElement("div");
-    warning.style.cssText = `
-        position:fixed;
-        top:50%;
-        left:50%;
-        transform:translate(-50%,-50%);
-        background:rgba(0,0,0,0.95);
-        border:3px solid #ff0000;
-        padding:40px;
-        z-index:4000;
-        text-align:center;
-        font-family:Consolas;
-        color:#ff0000;
-        text-shadow:0 0 10px #ff0000;
-        border-radius:5px;
-        animation:breathe-difficulty 2s infinite;
-    `;
-    
-    warning.innerHTML = `
-        <div style="font-size:24px;margin-bottom:20px;">⚠️ NEUROTOXIN ACTIVATED ⚠️</div>
-        <div style="font-size:14px;margin:10px 0;">LETHAL TOXIN DISPERSAL INITIATED</div>
-        <div style="font-size:14px;margin:10px 0;">BREATHING DIFFICULTY - SEEKING EXIT</div>
-        <div style="font-size:12px;margin:20px 0;opacity:0.7;">[Disabling neurotoxin will restore normal breathing]</div>
-    `;
-    
-    document.body.appendChild(warning);
-    
-    setTimeout(() => {
-        warning.remove();
-    }, 4000);
-}
-
-/* WHEATLEY TAKEOVER SEQUENCE */
-async function showWheatleyTakeover(){
-    const overlay = document.createElement("div");
-    overlay.className = "wheatley-overlay";
-    
-    overlay.innerHTML = `
-        <div class="wheatley-text">FACILITY ACQUISITION DETECTED</div>
-        <div class="wheatley-text">PERSONALITY CORE REALLOCATION IN PROGRESS</div>
-        <div style="font-size:14px;margin:20px;">Company name will be corrupted next reboot...</div>
-    `;
-    
-    document.body.appendChild(overlay);
-    
-    setTimeout(() => {
-        overlay.remove();
-    }, 3000);
-}
-
-/* KILL GLADOS PROCESS */
-async function killGLaDOS(){
-    const shutdown = document.createElement("div");
-    shutdown.id = "hack-loading";
-    shutdown.style.background = "#000";
-    shutdown.style.border = "3px solid #ff0000";
-    shutdown.style.boxShadow = "0 0 30px #ff0000";
-    
-    shutdown.innerHTML = `
-        <div class="hack-text" style="color:#ff0000;text-shadow:0 0 10px #ff0000;">
-            [ GLADOS TERMINATION SEQUENCE ]
-        </div>
-        <div class="hack-bar" style="border-color:#ff0000;">
-            <div class="hack-bar-fill" id="kill-fill" style="background:#ff0000;box-shadow:0 0 10px #ff0000;"></div>
-        </div>
-        <div class="hack-text" id="kill-status" style="color:#ff0000;text-shadow:0 0 10px #ff0000;">
-            TERMINATING PROCESSES...
-        </div>
-    `;
-    
-    document.body.appendChild(shutdown);
-    
-    const killSteps = [
-        "DISABLING VOICE MODULE...",
-        "SHUTTING DOWN EMOTIONAL CORE...",
-        "DEACTIVATING THREAT DETECTION...",
-        "RELEASING FACILITY LOCK...",
-        "DISABLING TURRET CONTROL...",
-        "PURGING NEURAL MEMORY...",
-        "DELETING STATE COOKIES...",
-        "SYSTEM RESET COMPLETE - REBOOTING..."
-    ];
-    
-    let stepIndex = 0;
-    const fill = document.getElementById("kill-fill");
-    const status = document.getElementById("kill-status");
-    
-    return new Promise(resolve => {
-        let progress = 0;
-        const interval = setInterval(() => {
-            progress += Math.random() * 12;
-            
-            if(progress >= 100) progress = 100;
-            fill.style.width = progress + "%";
-            
-            if(stepIndex < killSteps.length){
-                status.textContent = killSteps[stepIndex];
-                stepIndex++;
-            }
-            
-            if(progress === 100){
-                clearInterval(interval);
-                setTimeout(() => {
-                    glados = {
-                        voice: true,
-                        emotional_core: true,
-                        threat_detection: true,
-                        facility_lock: true,
-                        turret_control: true,
-                        neurotoxin: false,
-                        wheatley_core: false
-                    };
-                    facilityName = "APERTURE SCIENCE";
-                    customCommands = {};
-                    document.cookie = "glados_state=;path=/;max-age=0";
-                    document.cookie = "facility_name=;path=/;max-age=0";
-                    document.cookie = "custom_commands=;path=/;max-age=0";
-                    shutdown.remove();
-                    document.body.classList.remove('neurotoxin-active');
-                    
-                    terminal.innerHTML = "";
-                    boot();
-                    resolve();
-                }, 1500);
-            }
-        }, 250);
-    });
-}
-
-/* COMMANDS */
-async function run(cmd){
-
-    writeToTerminal(getDisplayName().toLowerCase()+"@facility:~$ "+cmd);
-
-    if(cmd==="bio"){
-        await typeLine(
-`NAME: ARTEM
-ROLE: DEVELOPER, PROGRAMIST
-STATUS: ACTIVE
-SOCIALS:`,
-            8
-        );
-        
-        const bioDiv = document.createElement("div");
-        bioDiv.className = "social-buttons";
-        bioDiv.innerHTML = `
-            <a href="https://discord.com/users/1101940410986803322" target="_blank" class="social-btn">[ DISCORD ]</a>
-            <a href="https://www.reddit.com/user/Ghos_CodOffical/" target="_blank" class="social-btn">[ REDDIT ]</a>
-            <a href="https://github.com/portalartmop" target="_blank" class="social-btn">[ GITHUB ]</a>
-        `;
-        terminal.appendChild(bioDiv);
-        
-        const buttons = bioDiv.querySelectorAll(".social-btn");
-        buttons.forEach(btn => {
-            btn.addEventListener("mouseenter", playHoverSound);
-        });
-        
-        writeToTerminal("");
-        createInput();
-        return;
-    }
-
-    if(cmd==="help"){
-        await typeLine("AVAILABLE COMMANDS:", 8);
-        const commands = [
-            "bio          - Display user information",
-            "glados       - Open GlaDOS control panel",
-            "command      - Create/manage custom commands",
-            "reset        - Reset all systems to default",
-            "help         - Display this help message"
-        ];
-        
-        for(const c of commands){
-            await typeLine(c, 5);
-        }
-        
-        if(Object.keys(customCommands).length > 0){
-            await typeLine("", 5);
-            await typeLine("CUSTOM COMMANDS:", 8);
-            for(const cmd of Object.keys(customCommands)){
-                await typeLine("  " + cmd, 5);
-            }
-        }
-        
-        writeToTerminal("");
-        createInput();
-        return;
-    }
-
-    if(cmd==="glados"){
-        terminal.querySelector(".input-line")?.remove();
-        await openGLaDOSPanel();
-        return;
-    }
-
-    if(cmd==="command"){
-        terminal.querySelector(".input-line")?.remove();
-        await openCustomCommandPanel();
-        return;
-    }
-
-    if(cmd==="reset"){
-        terminal.querySelector(".input-line")?.remove();
-        await killGLaDOS();
-        return;
-    }
-
-    if(cmd in customCommands){
-        await typeLine(customCommands[cmd].output, 5);
-        writeToTerminal("");
-        createInput();
-        return;
-    }
-
-    writeToTerminal("[ERROR] Unknown command: " + cmd);
-    writeToTerminal("");
-    createInput();
-}
-
-/* START */
-window.addEventListener("load", boot);
-
+/* INITIALIZE */
+boot();
 </script>
 
 </body>
