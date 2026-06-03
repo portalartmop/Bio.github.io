@@ -28,26 +28,39 @@ body.flicker{
     100%{opacity:.95}
 }
 
-/* LOGO CONTAINER */
+/* LOGO CONTAINER - RIGHT SIDE */
 #logo-container{
     position:fixed;
-    top:25px;
-    left:25px;
-    font-size:11px;
-    line-height:1.2;
-    white-space:pre;
-    color:#ff8c00;
-    text-shadow:0 0 8px #ff8c00;
+    top:50%;
+    right:30px;
+    transform:translateY(-50%);
+    width:200px;
+    height:auto;
     z-index:10;
     user-select:none;
     pointer-events:none;
-    font-family:Consolas,monospace;
+}
+
+#logo-svg{
+    width:100%;
+    height:auto;
+    filter:drop-shadow(0 0 15px #ff8c00);
+}
+
+#logo-text{
+    text-align:center;
+    color:#ff8c00;
+    font-size:14px;
+    font-weight:bold;
+    margin-top:10px;
+    text-shadow:0 0 8px #ff8c00;
+    letter-spacing:2px;
 }
 
 /* TERMINAL */
 #terminal{
     padding:25px;
-    padding-left:250px;
+    padding-right:280px;
     white-space:pre-wrap;
     line-height:1.6;
     text-shadow:0 0 8px #ff8c00;
@@ -118,7 +131,45 @@ input::placeholder{
     <source src="./audio/audio.mp3" type="audio/mpeg">
 </audio>
 
-<div id="logo-container"></div>
+<div id="logo-container">
+    <svg id="logo-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <!-- Outer circle -->
+        <circle cx="100" cy="100" r="95" fill="none" stroke="#ff8c00" stroke-width="2"/>
+        
+        <!-- Inner circle -->
+        <circle cx="100" cy="100" r="85" fill="none" stroke="#ff8c00" stroke-width="1"/>
+        
+        <!-- Core aperture circle -->
+        <circle cx="100" cy="100" r="70" fill="none" stroke="#ff8c00" stroke-width="2"/>
+        
+        <!-- Aperture blades (8 segments) -->
+        <g stroke="#ff8c00" stroke-width="2" fill="none">
+            <line x1="100" y1="30" x2="100" y2="50"/>
+            <line x1="100" y1="150" x2="100" y2="170"/>
+            <line x1="30" y1="100" x2="50" y2="100"/>
+            <line x1="150" y1="100" x2="170" y2="100"/>
+            
+            <!-- Diagonal blades -->
+            <line x1="55" y1="55" x2="70" y2="70"/>
+            <line x1="130" y1="130" x2="145" y2="145"/>
+            <line x1="145" y1="55" x2="130" y2="70"/>
+            <line x1="70" y1="130" x2="55" y2="145"/>
+        </g>
+        
+        <!-- Center dot -->
+        <circle cx="100" cy="100" r="4" fill="#ff8c00"/>
+        
+        <!-- Corner details -->
+        <g stroke="#ff8c00" stroke-width="1.5" fill="none" opacity="0.8">
+            <rect x="35" y="35" width="20" height="20"/>
+            <rect x="145" y="35" width="20" height="20"/>
+            <rect x="35" y="145" width="20" height="20"/>
+            <rect x="145" y="145" width="20" height="20"/>
+        </g>
+    </svg>
+    <div id="logo-text">APERTURE<br>SCIENCE</div>
+</div>
+
 <div id="terminal"></div>
 
 <script>
@@ -126,33 +177,6 @@ input::placeholder{
 const terminal = document.getElementById("terminal");
 const logoContainer = document.getElementById("logo-container");
 const bgm = document.getElementById("bgm");
-
-/* ASCII LOGOS */
-const logos = [
-`    ___    ____  ____  __________  ____________
-   / _ |  / __ \\/ __ \\/_  __/ / / / ____/ ____/
-  / __ | / /_/ / / / / / / / / / / __/ / __/   
- / ___ |/ ____/ /_/ / / / / /_/ / /___/ /___   
-/_/  |_/_/   \\____/ /_/  \\____/_____/_____/   `,
-`
-  ╔═══════════════════════════════╗
-  ║    APERTURE SCIENCE LAB       ║
-  ║      TEST CHAMBER ACTIVE      ║
-  ╚═══════════════════════════════╝`,
-`
-   █████╗ ██████╗ ███████╗██████╗ ████████╗██╗   ██╗██████╗ ███████╗
-  ██╔══██╗██╔══██╗██╔════╝██╔══██╗╚══██╔══╝██║   ██║██╔══██╗██╔════╝
-  ███████║██████╔╝█████╗  ██████╔╝   ██║   ██║   ██║██████╔╝█████╗  
-  ██╔══██║██╔═══╝ ██╔══╝  ██╔══██╗   ██║   ██║   ██║██╔══██╗██╔══╝  
-  ██║  ██║██║     ███████╗██║  ██║   ██║   ╚██████╔╝██║  ██║███████╗
-  ╚═╝  ╚═╝╚═╝     ╚══════╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚══════╝`
-];
-
-let currentLogoIndex = 0;
-
-function displayLogo(){
-    logoContainer.textContent = logos[currentLogoIndex];
-}
 
 /* AUDIO AUTO START (browser-safe) */
 let musicStarted = false;
@@ -196,8 +220,6 @@ function typeLine(text, speed=10){
 
 /* BOOT */
 async function boot(){
-
-    displayLogo();
 
     const intro=[
         "APERTURE SCIENCE COMPUTER-AIDED ENRICHMENT CENTER",
@@ -269,19 +291,10 @@ STATUS: ACTIVE`,
         await typeLine(
             `COMMANDS LIST:
   bio        - Display developer information
-  logo       - Cycle ASCII logo design
   end        - Start credits sequence
   clear      - Clear terminal screen`,
             8
         );
-        createInput();
-        return;
-    }
-
-    if(cmd==="logo"){
-        currentLogoIndex = (currentLogoIndex + 1) % logos.length;
-        displayLogo();
-        await typeLine("Logo design changed",8);
         createInput();
         return;
     }
