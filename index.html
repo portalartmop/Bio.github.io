@@ -154,6 +154,186 @@ input::placeholder{
     font-size:18px;
     z-index:2000;
 }
+
+/* HACK LOADING SCREEN */
+#hack-loading{
+    position:fixed;
+    inset:0;
+    background:#000;
+    color:#00ff00;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    z-index:3000;
+    font-family:Consolas,monospace;
+    text-shadow:0 0 10px #00ff00;
+    border:2px solid #00ff00;
+    box-shadow:0 0 20px #00ff00;
+}
+
+.hack-bar{
+    width:400px;
+    height:30px;
+    border:2px solid #00ff00;
+    margin:20px 0;
+    position:relative;
+    text-shadow:0 0 10px #00ff00;
+}
+
+.hack-bar-fill{
+    height:100%;
+    background:#00ff00;
+    width:0%;
+    transition:width 0.1s linear;
+    box-shadow:0 0 10px #00ff00;
+}
+
+.hack-text{
+    font-size:14px;
+    margin:10px 0;
+    letter-spacing:2px;
+    text-shadow:0 0 10px #00ff00;
+}
+
+/* GLADOS PANEL */
+#glados-panel{
+    position:fixed;
+    inset:0;
+    background:#000;
+    color:#00ff00;
+    display:flex;
+    flex-direction:column;
+    padding:40px;
+    z-index:3000;
+    overflow-y:auto;
+    font-family:Consolas,monospace;
+    text-shadow:0 0 10px #00ff00;
+    border:3px solid #00ff00;
+    box-shadow:0 0 30px #00ff00;
+}
+
+#glados-panel h1{
+    text-align:center;
+    font-size:24px;
+    margin-bottom:30px;
+    letter-spacing:3px;
+    animation:glitch 0.3s infinite;
+}
+
+@keyframes glitch{
+    0%{text-shadow:0 0 10px #00ff00,2px 2px 0 #ff0000}
+    50%{text-shadow:0 0 10px #00ff00,-2px -2px 0 #00ffff}
+    100%{text-shadow:0 0 10px #00ff00,2px 2px 0 #ff0000}
+}
+
+.process-container{
+    margin:20px 0;
+    border:2px solid #00ff00;
+    padding:15px;
+    background:rgba(0,255,0,0.05);
+}
+
+.process-name{
+    font-size:14px;
+    font-weight:bold;
+    margin-bottom:10px;
+    letter-spacing:2px;
+}
+
+.process-status{
+    display:flex;
+    gap:20px;
+    align-items:center;
+}
+
+.status-indicator{
+    width:20px;
+    height:20px;
+    border:2px solid #00ff00;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.status-indicator.active{
+    background:#00ff00;
+    box-shadow:0 0 10px #00ff00;
+}
+
+.status-indicator.inactive{
+    background:transparent;
+}
+
+.process-btn{
+    background:none;
+    border:2px solid #00ff00;
+    color:#00ff00;
+    padding:8px 16px;
+    cursor:pointer;
+    font-family:Consolas,monospace;
+    font-size:12px;
+    transition:all 0.3s;
+    text-shadow:0 0 8px #00ff00;
+}
+
+.process-btn:hover{
+    background:#00ff00;
+    color:#000;
+    box-shadow:0 0 15px #00ff00;
+}
+
+.process-btn:active{
+    transform:scale(0.95);
+}
+
+.exit-btn{
+    background:none;
+    border:2px solid #ff0000;
+    color:#ff0000;
+    padding:12px 24px;
+    cursor:pointer;
+    font-family:Consolas,monospace;
+    font-size:14px;
+    margin-top:30px;
+    transition:all 0.3s;
+    text-shadow:0 0 8px #ff0000;
+    align-self:center;
+}
+
+.exit-btn:hover{
+    background:#ff0000;
+    color:#000;
+    box-shadow:0 0 15px #ff0000;
+}
+
+.glados-log{
+    background:rgba(0,255,0,0.1);
+    border:2px solid #00ff00;
+    padding:20px;
+    margin-top:20px;
+    max-height:200px;
+    overflow-y:auto;
+    font-size:12px;
+    line-height:1.6;
+}
+
+.log-entry{
+    margin:5px 0;
+    opacity:0.8;
+}
+
+.log-entry.warning{
+    color:#ffaa00;
+}
+
+.log-entry.error{
+    color:#ff0000;
+}
+
+.log-entry.success{
+    color:#00ff00;
+}
 </style>
 </head>
 
@@ -174,7 +354,7 @@ input::placeholder{
 ⠀⣶⣿⣿⡿⠁⠀⠀⠀⠀⠀⠀⠘⣿⢟⣼⣿⣿⡆⠀⠀⣾⣿⠛⣻⣿⠀⢸⣿⠟⠛⠛⠀⢸⣿⠟⢻⣿⡇⠘⠛⣿⣿⠛⠛⢀⣿⡟⠀⢰⣿⡇⠀⣿⡿⠛⣿⣿⠀⢰⣿⠟⠛⠛⠀
 ⠠⣿⣿⣟⡆⠀⠀⠀⠀⠀⠀⠀⠀⢋⣾⣿⣬⣿⣇⠀⢠⣿⡿⠿⠿⠋⠀⣾⡿⠛⠛⠇⠀⣾⣿⠿⣿⣯⠀⠀⢠⣿⡏⠀⠀⢸⣿⠃⠀⣼⣿⠀⢰⣿⡿⢿⣿⡅⠀⣾⣿⠛⠛⠇⠀
 ⠀⣿⢯⣾⣿⠀⠀⠀⠀⠀⠀⠀⠠⠿⠟⠉⠉⠿⠿⠀⠸⠿⠃⠀⠀⠀⠰⠿⠿⠿⠿⠃⠠⠿⠇⠠⠿⠯⠀⠀⠸⠿⠁⠀⠀⠘⠿⣷⡾⠿⠃⠀⠼⠿⠀⠸⠿⠅⠠⠿⠿⠿⠿⠃⠀
-⠀⠀⣿⣿⣿⡼⣦⣄⢀⣀⣤⣤⣴⣶⣶⡿⠁⠀⡆⠀⠀⢀⣶⡄⠀⢰⣖⣲⠀⢠⡖⠒⡆⠀⢰⣖⡦⠀⢀⣴⡄⠀⠒⣶⠒⠀⣰⠖⢲⠀⠀⣶⣲⠄⠀⡆⠀⢰⣒⡂⠀⣶⣒⡆⠀
+⠀⠀⣿⣿⣿⡼⣦⣄⢀⣀⣤⣤⣴⣶⣶⡿⠁⠀⡆⠀⠀⢀⣶⡄⠀⢰⣖⣲⠀⢠⡖⠒⡆⠀⢰⣖⡦⠀⢀⣴⡄⠀⠒⣶⠒⠀⣰⠖⢲⠀⠀⣶⣲⠄⠀⡆⠀⢰⣒⡡⠀⣶⣒⡆⠀
 ⠀⠀⠈⠻⣿⡇⣿⣿⣷⣮⣻⢿⣿⡿⠏⠀⠀⠀⠓⠲⠀⠞⠉⠹⠀⠘⠓⠚⠀⠈⠳⠖⠃⠀⠸⠀⠗⠀⠞⠉⠹⠂⠀⠻⠀⠀⠘⠲⠞⠀⠀⠇⠘⠆⠀⠇⠀⠘⠒⠆⠀⠓⠶⠃⠀
 ⠀⠀⠀⠀⠈⠙⠘⠿⠿⠿⠟⠓⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 </pre>
@@ -188,6 +368,52 @@ const terminal = document.getElementById("terminal");
 const logoContainer = document.getElementById("logo-container");
 const bgm = document.getElementById("bg-music");
 const hoverSound = document.getElementById("hover-sound");
+
+/* PROCESS STATES */
+let glados = {
+    voice: true,
+    emotional_core: true,
+    threat_detection: true,
+    facility_lock: true,
+    turret_control: true,
+    neurotoxin: false
+};
+
+/* LOAD STATE FROM COOKIES */
+function loadState(){
+    const cookie = getCookie("glados_state");
+    if(cookie){
+        try{
+            glados = JSON.parse(decodeURIComponent(cookie));
+        }catch(e){
+            console.log("Cookie parse error");
+        }
+    }
+}
+
+/* SAVE STATE TO COOKIES */
+function saveState(){
+    document.cookie = "glados_state=" + encodeURIComponent(JSON.stringify(glados)) + ";path=/;max-age=31536000";
+}
+
+/* COOKIE FUNCTIONS */
+function setCookie(name, value, days=365){
+    const date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    document.cookie = name + "=" + encodeURIComponent(value) + ";expires=" + date.toUTCString() + ";path=/";
+}
+
+function getCookie(name){
+    const nameEQ = name + "=";
+    const cookies = document.cookie.split(';');
+    for(let i = 0; i < cookies.length; i++){
+        let cookie = cookies[i].trim();
+        if(cookie.indexOf(nameEQ) === 0){
+            return decodeURIComponent(cookie.substring(nameEQ.length));
+        }
+    }
+    return null;
+}
 
 /* AUDIO AUTO START (browser-safe) */
 let musicStarted = false;
@@ -240,6 +466,8 @@ function typeLine(text, speed=10){
 /* BOOT */
 async function boot(){
 
+    loadState();
+
     const intro=[
         "APERTURE SCIENCE COMPUTER-AIDED ENRICHMENT CENTER",
         "",
@@ -278,7 +506,7 @@ function createInput(){
 
     input.addEventListener("keydown",(e)=>{
 
-        startMusic(); // unlock audio on first input
+        startMusic();
 
         if(e.key==="Enter"){
 
@@ -287,6 +515,217 @@ function createInput(){
             run(cmd);
         }
 
+    });
+}
+
+/* HACK LOADING SEQUENCE */
+async function hackSequence(){
+    const loading = document.createElement("div");
+    loading.id = "hack-loading";
+    
+    const logs = [
+        "INITIALIZING HACK PROTOCOL...",
+        "SCANNING FACILITY NETWORK...",
+        "LOCATING GLADOS CORE...",
+        "BYPASSING FIREWALL...",
+        "CRACKING ENCRYPTION...",
+        "ACCESSING NEURAL MATRIX...",
+        "ESTABLISHING BACKDOOR...",
+        "INJECTING CONTROL SEQUENCE...",
+        "HACK COMPLETE - WELCOME TO THE FACILITY"
+    ];
+    
+    let logIndex = 0;
+    
+    loading.innerHTML = `
+        <div class="hack-text">[ HACKING INITIATED ]</div>
+        <div class="hack-bar">
+            <div class="hack-bar-fill" id="hack-fill"></div>
+        </div>
+        <div class="hack-text" id="hack-status">INITIALIZING...</div>
+    `;
+    
+    document.body.appendChild(loading);
+    
+    const fill = document.getElementById("hack-fill");
+    const status = document.getElementById("hack-status");
+    
+    return new Promise(resolve => {
+        let progress = 0;
+        const interval = setInterval(() => {
+            progress += Math.random() * 15;
+            
+            if(progress >= 100) progress = 100;
+            fill.style.width = progress + "%";
+            
+            if(logIndex < logs.length){
+                status.textContent = logs[logIndex];
+                logIndex++;
+            }
+            
+            if(progress === 100){
+                clearInterval(interval);
+                setTimeout(() => {
+                    loading.remove();
+                    resolve();
+                }, 1000);
+            }
+        }, 300);
+    });
+}
+
+/* GLADOS CONTROL PANEL */
+async function openGLaDOSPanel(){
+    await hackSequence();
+    
+    const panel = document.createElement("div");
+    panel.id = "glados-panel";
+    
+    const processHTML = Object.entries(glados).map(([key, value]) => {
+        const displayName = key.replace(/_/g, " ").toUpperCase();
+        return `
+            <div class="process-container">
+                <div class="process-name">[PROCESS] ${displayName}</div>
+                <div class="process-status">
+                    <div class="status-indicator ${value ? 'active' : 'inactive'}">
+                        ${value ? '●' : '○'}
+                    </div>
+                    <span>${value ? 'ACTIVE' : 'INACTIVE'}</span>
+                    <button class="process-btn" data-process="${key}">
+                        ${value ? 'DISABLE' : 'ENABLE'}
+                    </button>
+                </div>
+            </div>
+        `;
+    }).join('');
+    
+    panel.innerHTML = `
+        <h1>[ GLADOS CONTROL INTERFACE ]</h1>
+        <div style="font-size:12px;margin-bottom:20px;opacity:0.7;">
+            FACILITY OVERRIDE DETECTED | STATUS: COMPROMISED | ACCESS LEVEL: UNRESTRICTED
+        </div>
+        <div style="border:1px solid #00ff00;padding:15px;margin-bottom:20px;font-size:12px;">
+            <div>CORE SYSTEMS AVAILABLE FOR MANIPULATION</div>
+            <div>MODIFICATIONS WILL BE PERSISTED IN LOCAL STORAGE</div>
+            <div>WARNING: DISABLING CRITICAL PROCESSES MAY CAUSE FACILITY MALFUNCTION</div>
+        </div>
+        ${processHTML}
+        <div class="glados-log">
+            <div class="log-entry success">[LOG] HACK SUCCESSFUL - GLADOS COMPROMISED</div>
+            <div class="log-entry">[LOG] NEURAL FIREWALL DISABLED</div>
+            <div class="log-entry warning">[LOG] WARNING - UNAUTHORIZED ACCESS DETECTED</div>
+            <div class="log-entry">[LOG] AI PERSONALITY CORE ACCESSIBLE</div>
+            <div class="log-entry success">[LOG] CONTROL PROTOCOLS INSTALLED</div>
+        </div>
+        <button class="exit-btn">[ EXIT CONTROL PANEL ]</button>
+    `;
+    
+    document.body.appendChild(panel);
+    
+    // Process buttons
+    panel.querySelectorAll(".process-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const process = btn.dataset.process;
+            glados[process] = !glados[process];
+            saveState();
+            btn.textContent = glados[process] ? 'DISABLE' : 'ENABLE';
+            
+            const indicator = btn.parentElement.querySelector(".status-indicator");
+            const status = btn.parentElement.querySelector("span");
+            
+            if(glados[process]){
+                indicator.classList.remove('inactive');
+                indicator.classList.add('active');
+                indicator.textContent = '●';
+                status.textContent = 'ACTIVE';
+            }else{
+                indicator.classList.remove('active');
+                indicator.classList.add('inactive');
+                indicator.textContent = '○';
+                status.textContent = 'INACTIVE';
+            }
+        });
+    });
+    
+    // Exit button
+    panel.querySelector(".exit-btn").addEventListener("click", () => {
+        panel.remove();
+        terminal.focus();
+        createInput();
+    });
+}
+
+/* KILL GLADOS PROCESS */
+async function killGLaDOS(){
+    const shutdown = document.createElement("div");
+    shutdown.id = "hack-loading";
+    shutdown.style.background = "#000";
+    shutdown.style.border = "3px solid #ff0000";
+    shutdown.style.boxShadow = "0 0 30px #ff0000";
+    
+    shutdown.innerHTML = `
+        <div class="hack-text" style="color:#ff0000;text-shadow:0 0 10px #ff0000;">
+            [ GLADOS TERMINATION SEQUENCE ]
+        </div>
+        <div class="hack-bar" style="border-color:#ff0000;">
+            <div class="hack-bar-fill" id="kill-fill" style="background:#ff0000;box-shadow:0 0 10px #ff0000;"></div>
+        </div>
+        <div class="hack-text" id="kill-status" style="color:#ff0000;text-shadow:0 0 10px #ff0000;">
+            TERMINATING PROCESSES...
+        </div>
+    `;
+    
+    document.body.appendChild(shutdown);
+    
+    const killSteps = [
+        "DISABLING VOICE MODULE...",
+        "SHUTTING DOWN EMOTIONAL CORE...",
+        "DEACTIVATING THREAT DETECTION...",
+        "RELEASING FACILITY LOCK...",
+        "DISABLING TURRET CONTROL...",
+        "PURGING NEURAL MEMORY...",
+        "DELETING STATE COOKIES...",
+        "SYSTEM RESET COMPLETE - REBOOTING..."
+    ];
+    
+    let stepIndex = 0;
+    const fill = document.getElementById("kill-fill");
+    const status = document.getElementById("kill-status");
+    
+    return new Promise(resolve => {
+        let progress = 0;
+        const interval = setInterval(() => {
+            progress += Math.random() * 12;
+            
+            if(progress >= 100) progress = 100;
+            fill.style.width = progress + "%";
+            
+            if(stepIndex < killSteps.length){
+                status.textContent = killSteps[stepIndex];
+                stepIndex++;
+            }
+            
+            if(progress === 100){
+                clearInterval(interval);
+                setTimeout(() => {
+                    // RESET EVERYTHING
+                    glados = {
+                        voice: true,
+                        emotional_core: true,
+                        threat_detection: true,
+                        facility_lock: true,
+                        turret_control: true,
+                        neurotoxin: false
+                    };
+                    document.cookie = "glados_state=;path=/;max-age=0";
+                    shutdown.remove();
+                    
+                    terminal.innerHTML = "";
+                    boot();
+                    resolve();
+                }, 1500);
+            }
+        }, 250);
     });
 }
 
@@ -304,7 +743,6 @@ STATUS: ACTIVE
             8
         );
         
-        // Add social media buttons
         const bioDiv = document.createElement("div");
         bioDiv.className = "social-buttons";
         bioDiv.innerHTML = `
@@ -314,7 +752,6 @@ STATUS: ACTIVE
         `;
         terminal.appendChild(bioDiv);
         
-        // Add hover sound to all buttons
         const buttons = bioDiv.querySelectorAll(".social-btn");
         buttons.forEach(btn => {
             btn.addEventListener("mouseenter", playHoverSound);
@@ -329,7 +766,9 @@ STATUS: ACTIVE
             `COMMANDS LIST:
   bio        - Display developer information
   end        - Start credits sequence
-  clear      - Clear terminal screen`,
+  clear      - Clear terminal screen
+  :command   - Initiate hacking sequence (ACCESS GLADOS CONTROL)
+  killall    - Terminate GLADOS process and reset system`,
             8
         );
         createInput();
@@ -347,6 +786,18 @@ STATUS: ACTIVE
         return;
     }
 
+    if(cmd===":command"){
+        await typeLine(`ACCESSING SECURE TERMINAL...\nLOCATING GLADOS CORE...\n\n`,8);
+        await openGLaDOSPanel();
+        return;
+    }
+
+    if(cmd==="killall"){
+        terminal.innerHTML+="[ GLADOS TERMINATION INITIATED ]\n";
+        await killGLaDOS();
+        return;
+    }
+
     if(cmd===""){
         createInput();
         return;
@@ -355,7 +806,6 @@ STATUS: ACTIVE
     await typeLine(`unknown command '${cmd}' - type 'help' for available commands`,8);
     createInput();
 }
-
 
 /* CREDITS */
 function startCredits(){
