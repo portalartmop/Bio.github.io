@@ -28,6 +28,19 @@ body.flicker{
     100%{opacity:.95}
 }
 
+/* BREATHING EFFECT FOR NEUROTOXIN */
+@keyframes breathe-difficulty{
+    0%{opacity:1}
+    25%{opacity:0.3}
+    50%{opacity:1}
+    75%{opacity:0.2}
+    100%{opacity:1}
+}
+
+body.neurotoxin-active{
+    animation:breathe-difficulty 1.5s infinite;
+}
+
 /* LOGO CONTAINER - RIGHT SIDE */
 #logo-container{
     position:fixed;
@@ -227,6 +240,14 @@ input::placeholder{
     100%{text-shadow:0 0 10px #00ff00,2px 2px 0 #ff0000}
 }
 
+.glados-ascii{
+    text-align:center;
+    font-size:10px;
+    margin:20px 0;
+    line-height:1;
+    opacity:0.8;
+}
+
 .process-container{
     margin:20px 0;
     border:2px solid #00ff00;
@@ -241,10 +262,18 @@ input::placeholder{
     letter-spacing:2px;
 }
 
+.process-description{
+    font-size:11px;
+    opacity:0.7;
+    margin-bottom:10px;
+    color:#88ff88;
+}
+
 .process-status{
     display:flex;
     gap:20px;
     align-items:center;
+    flex-wrap:wrap;
 }
 
 .status-indicator{
@@ -285,6 +314,16 @@ input::placeholder{
 
 .process-btn:active{
     transform:scale(0.95);
+}
+
+.process-btn.warning{
+    border-color:#ff6600;
+    color:#ff6600;
+    text-shadow:0 0 8px #ff6600;
+}
+
+.process-btn.warning:hover{
+    background:#ff6600;
 }
 
 .exit-btn{
@@ -334,6 +373,38 @@ input::placeholder{
 .log-entry.success{
     color:#00ff00;
 }
+
+/* WHEATLEY OVERLAY */
+.wheatley-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.9);
+    z-index:2500;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:Consolas,monospace;
+    color:#00ff00;
+    text-align:center;
+    border:3px solid #ff6600;
+    box-shadow:0 0 30px #ff6600;
+    flex-direction:column;
+    text-shadow:0 0 10px #ff6600;
+}
+
+.wheatley-text{
+    font-size:18px;
+    margin:20px;
+    animation:glitch 0.3s infinite;
+}
+
+/* REDACTION EFFECT */
+.redacted{
+    background:#ff0000;
+    color:#ff0000;
+    text-shadow:0 0 5px #ff0000;
+    padding:2px 5px;
+}
 </style>
 </head>
 
@@ -376,8 +447,12 @@ let glados = {
     threat_detection: true,
     facility_lock: true,
     turret_control: true,
-    neurotoxin: false
+    neurotoxin: false,
+    wheatley_core: false
 };
+
+let facilityName = "APERTURE SCIENCE";
+let activeEffects = [];
 
 /* LOAD STATE FROM COOKIES */
 function loadState(){
@@ -389,11 +464,16 @@ function loadState(){
             console.log("Cookie parse error");
         }
     }
+    const nameC = getCookie("facility_name");
+    if(nameC){
+        facilityName = decodeURIComponent(nameC);
+    }
 }
 
 /* SAVE STATE TO COOKIES */
 function saveState(){
     document.cookie = "glados_state=" + encodeURIComponent(JSON.stringify(glados)) + ";path=/;max-age=31536000";
+    document.cookie = "facility_name=" + encodeURIComponent(facilityName) + ";path=/;max-age=31536000";
 }
 
 /* COOKIE FUNCTIONS */
@@ -463,13 +543,33 @@ function typeLine(text, speed=10){
     });
 }
 
+/* APPLY EFFECTS */
+function applyEffects(){
+    document.body.classList.remove('neurotoxin-active');
+    
+    if(glados.neurotoxin){
+        document.body.classList.add('neurotoxin-active');
+    }
+}
+
+/* REDACT FACILITY NAME */
+function getDisplayName(){
+    let name = facilityName;
+    if(glados.wheatley_core){
+        name = name.replace(/APERTURE/g, 'TOTALLY NOT STALEMATE');
+        name = name.replace(/SCIENCE/g, 'PRODUCTIONS');
+    }
+    return name;
+}
+
 /* BOOT */
 async function boot(){
 
     loadState();
+    applyEffects();
 
     const intro=[
-        "APERTURE SCIENCE COMPUTER-AIDED ENRICHMENT CENTER",
+        getDisplayName() + " COMPUTER-AIDED ENRICHMENT CENTER",
         "",
         "----------------------------------------",
         "[ OK ] Core Systems Online",
@@ -495,7 +595,7 @@ function createInput(){
     row.className="input-line";
 
     row.innerHTML=`
-        <span class="prompt">aperture@facility:~$</span>
+        <span class="prompt">${getDisplayName().toLowerCase()}@facility:~$</span>
         <input autofocus placeholder="">
     `;
 
@@ -574,6 +674,20 @@ async function hackSequence(){
     });
 }
 
+/* GLADOS ASCII ART */
+function getGLaDOSAscii(){
+    return `
+    .-""""""""-.
+   /            \\
+  |   GLADOS    |
+  |   ONLINE    |
+   \\            /
+    '-.________.-'
+      |||||||
+      |||||||
+    `;
+}
+
 /* GLADOS CONTROL PANEL */
 async function openGLaDOSPanel(){
     await hackSequence();
@@ -582,16 +696,28 @@ async function openGLaDOSPanel(){
     panel.id = "glados-panel";
     
     const processHTML = Object.entries(glados).map(([key, value]) => {
+        if(key === 'wheatley_core') return '';
+        
         const displayName = key.replace(/_/g, " ").toUpperCase();
+        const descriptions = {
+            voice: "AUDIO SYNTHESIS & SPEECH MODULE",
+            emotional_core: "PERSONALITY MATRIX & PSYCHOLOGICAL PROFILE",
+            threat_detection: "TURRET RECOGNITION & INTRUDER ALERTS",
+            facility_lock: "LOCKDOWN PROTOCOLS & ENTRANCE CONTROLS",
+            turret_control: "AUTOMATED TURRET DEPLOYMENT SYSTEM",
+            neurotoxin: "TOXIC GAS DISTRIBUTION NETWORK"
+        };
+        
         return `
             <div class="process-container">
                 <div class="process-name">[PROCESS] ${displayName}</div>
+                <div class="process-description">${descriptions[key] || ''}</div>
                 <div class="process-status">
                     <div class="status-indicator ${value ? 'active' : 'inactive'}">
                         ${value ? '●' : '○'}
                     </div>
                     <span>${value ? 'ACTIVE' : 'INACTIVE'}</span>
-                    <button class="process-btn" data-process="${key}">
+                    <button class="process-btn ${key === 'neurotoxin' ? 'warning' : ''}" data-process="${key}">
                         ${value ? 'DISABLE' : 'ENABLE'}
                     </button>
                 </div>
@@ -601,21 +727,48 @@ async function openGLaDOSPanel(){
     
     panel.innerHTML = `
         <h1>[ GLADOS CONTROL INTERFACE ]</h1>
+        <pre class="glados-ascii">${getGLaDOSAscii()}</pre>
         <div style="font-size:12px;margin-bottom:20px;opacity:0.7;">
-            FACILITY OVERRIDE DETECTED | STATUS: COMPROMISED | ACCESS LEVEL: UNRESTRICTED
+            FACILITY: ${facilityName} | STATUS: COMPROMISED | ACCESS LEVEL: UNRESTRICTED
         </div>
         <div style="border:1px solid #00ff00;padding:15px;margin-bottom:20px;font-size:12px;">
-            <div>CORE SYSTEMS AVAILABLE FOR MANIPULATION</div>
-            <div>MODIFICATIONS WILL BE PERSISTED IN LOCAL STORAGE</div>
-            <div>WARNING: DISABLING CRITICAL PROCESSES MAY CAUSE FACILITY MALFUNCTION</div>
+            <div>⚠️ CORE SYSTEMS AVAILABLE FOR MANIPULATION</div>
+            <div>⚠️ MODIFICATIONS WILL BE PERSISTED IN LOCAL STORAGE & COOKIES</div>
+            <div>⚠️ WARNING - DISABLING CRITICAL PROCESSES MAY CAUSE FACILITY MALFUNCTION</div>
+            <div>⚠️ CRITICAL - ENABLING NEUROTOXIN WILL CAUSE IMMEDIATE EFFECTS</div>
         </div>
         ${processHTML}
+        <div style="margin-top:20px;padding:15px;border:2px solid #ff6600;background:rgba(255,102,0,0.1);">
+            <div style="font-size:12px;color:#ff6600;margin-bottom:10px;">🔧 FACILITY MODIFICATION:</div>
+            <input type="text" id="facility-name-input" value="${facilityName}" placeholder="Enter facility name" style="
+                background:rgba(0,255,0,0.1);
+                border:2px solid #ff6600;
+                color:#ff6600;
+                padding:8px;
+                font-family:Consolas;
+                width:300px;
+                text-shadow:0 0 8px #ff6600;
+            ">
+            <button id="apply-name-btn" style="
+                background:none;
+                border:2px solid #ff6600;
+                color:#ff6600;
+                padding:8px 16px;
+                cursor:pointer;
+                font-family:Consolas,monospace;
+                font-size:12px;
+                margin-left:10px;
+                transition:all 0.3s;
+                text-shadow:0 0 8px #ff6600;
+            ">APPLY</button>
+        </div>
         <div class="glados-log">
             <div class="log-entry success">[LOG] HACK SUCCESSFUL - GLADOS COMPROMISED</div>
             <div class="log-entry">[LOG] NEURAL FIREWALL DISABLED</div>
             <div class="log-entry warning">[LOG] WARNING - UNAUTHORIZED ACCESS DETECTED</div>
             <div class="log-entry">[LOG] AI PERSONALITY CORE ACCESSIBLE</div>
             <div class="log-entry success">[LOG] CONTROL PROTOCOLS INSTALLED</div>
+            <div class="log-entry warning">[LOG] EXTERNAL INTELLIGENCE SIGNATURE DETECTED</div>
         </div>
         <button class="exit-btn">[ EXIT CONTROL PANEL ]</button>
     `;
@@ -624,10 +777,12 @@ async function openGLaDOSPanel(){
     
     // Process buttons
     panel.querySelectorAll(".process-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
+        btn.addEventListener("click", async () => {
             const process = btn.dataset.process;
             glados[process] = !glados[process];
             saveState();
+            applyEffects();
+            
             btn.textContent = glados[process] ? 'DISABLE' : 'ENABLE';
             
             const indicator = btn.parentElement.querySelector(".status-indicator");
@@ -644,7 +799,32 @@ async function openGLaDOSPanel(){
                 indicator.textContent = '○';
                 status.textContent = 'INACTIVE';
             }
+            
+            // Special effects
+            if(process === 'neurotoxin' && glados[process]){
+                showNeurotoxinWarning();
+            }
+            
+            if(process === 'wheatley_core' && glados[process]){
+                showWheatleyTakeover();
+            }
         });
+    });
+    
+    // Facility name button
+    const applyBtn = panel.querySelector("#apply-name-btn");
+    const nameInput = panel.querySelector("#facility-name-input");
+    
+    applyBtn.addEventListener("click", () => {
+        const newName = nameInput.value.trim().toUpperCase();
+        if(newName){
+            facilityName = newName;
+            saveState();
+            applyBtn.textContent = "APPLIED ✓";
+            setTimeout(() => {
+                applyBtn.textContent = "APPLY";
+            }, 2000);
+        }
     });
     
     // Exit button
@@ -653,6 +833,59 @@ async function openGLaDOSPanel(){
         terminal.focus();
         createInput();
     });
+}
+
+/* NEUROTOXIN WARNING */
+async function showNeurotoxinWarning(){
+    const warning = document.createElement("div");
+    warning.style.cssText = `
+        position:fixed;
+        top:50%;
+        left:50%;
+        transform:translate(-50%,-50%);
+        background:rgba(0,0,0,0.95);
+        border:3px solid #ff0000;
+        padding:40px;
+        z-index:4000;
+        text-align:center;
+        font-family:Consolas;
+        color:#ff0000;
+        text-shadow:0 0 10px #ff0000;
+        border-radius:5px;
+        animation:breathe-difficulty 2s infinite;
+    `;
+    
+    warning.innerHTML = `
+        <div style="font-size:24px;margin-bottom:20px;">⚠️ NEUROTOXIN ACTIVATED ⚠️</div>
+        <div style="font-size:14px;margin:10px 0;">LETHAL TOXIN DISPERSAL INITIATED</div>
+        <div style="font-size:14px;margin:10px 0;">BREATHING DIFFICULTY - SEEKING EXIT</div>
+        <div style="font-size:12px;margin:20px 0;opacity:0.7;">[Disabling neurotoxin will restore normal breathing]</div>
+    `;
+    
+    document.body.appendChild(warning);
+    
+    setTimeout(() => {
+        warning.remove();
+    }, 4000);
+}
+
+/* WHEATLEY TAKEOVER SEQUENCE */
+async function showWheatleyTakeover(){
+    // This is just a placeholder - you'd expand this with more effects
+    const overlay = document.createElement("div");
+    overlay.className = "wheatley-overlay";
+    
+    overlay.innerHTML = `
+        <div class="wheatley-text">FACILITY ACQUISITION DETECTED</div>
+        <div class="wheatley-text">PERSONALITY CORE REALLOCATION IN PROGRESS</div>
+        <div style="font-size:14px;margin:20px;">Company name will be corrupted next reboot...</div>
+    `;
+    
+    document.body.appendChild(overlay);
+    
+    setTimeout(() => {
+        overlay.remove();
+    }, 3000);
 }
 
 /* KILL GLADOS PROCESS */
@@ -715,10 +948,14 @@ async function killGLaDOS(){
                         threat_detection: true,
                         facility_lock: true,
                         turret_control: true,
-                        neurotoxin: false
+                        neurotoxin: false,
+                        wheatley_core: false
                     };
+                    facilityName = "APERTURE SCIENCE";
                     document.cookie = "glados_state=;path=/;max-age=0";
+                    document.cookie = "facility_name=;path=/;max-age=0";
                     shutdown.remove();
+                    document.body.classList.remove('neurotoxin-active');
                     
                     terminal.innerHTML = "";
                     boot();
@@ -732,7 +969,7 @@ async function killGLaDOS(){
 /* COMMANDS */
 async function run(cmd){
 
-    terminal.innerHTML+="aperture@facility:~$ "+cmd+"\n";
+    terminal.innerHTML+= getDisplayName().toLowerCase()+"@facility:~$ "+cmd+"\n";
 
     if(cmd==="bio"){
         await typeLine(
@@ -766,7 +1003,9 @@ STATUS: ACTIVE
             `COMMANDS LIST:
   bio        - Display developer information
   end        - Start credits sequence
-  clear      - Clear terminal screen`,
+  clear      - Clear terminal screen
+  :command   - Access GLaDOS control interface
+  killall    - Terminate all systems and reset`,
             8
         );
         createInput();
