@@ -28,19 +28,6 @@ body.flicker{
     100%{opacity:.95}
 }
 
-/* BREATHING EFFECT FOR NEUROTOXIN */
-@keyframes breathe-difficulty{
-    0%{opacity:1}
-    25%{opacity:0.3}
-    50%{opacity:1}
-    75%{opacity:0.2}
-    100%{opacity:1}
-}
-
-body.neurotoxin-active{
-    animation:breathe-difficulty 1.5s infinite;
-}
-
 /* LOGO CONTAINER - RIGHT SIDE */
 #logo-container{
     position:fixed;
@@ -77,26 +64,16 @@ body.neurotoxin-active{
     line-height:1.6;
     text-shadow:0 0 8px #ff8c00;
     min-height:100vh;
-    max-height:100vh;
-    overflow-y:auto;
-}
-
-/* OUTPUT LINES */
-.terminal-line{
-    margin:0;
-    word-wrap:break-word;
 }
 
 /* INPUT */
 .input-line{
     display:flex;
-    margin:5px 0;
 }
 
 .prompt{
     margin-right:10px;
     color:#ffb347;
-    flex-shrink:0;
 }
 
 input{
@@ -113,13 +90,119 @@ input::placeholder{
     opacity:0.5;
 }
 
-/* CUSTOMIZATION HUB */
-#customization-hub{
+/* SOCIAL BUTTONS */
+.social-buttons{
+    display:flex;
+    gap:15px;
+    margin-top:15px;
+    flex-wrap:wrap;
+}
+
+.social-btn{
+    background:none;
+    border:2px solid #ff8c00;
+    color:#ff8c00;
+    padding:8px 16px;
+    cursor:pointer;
+    font-family:Consolas,monospace;
+    font-size:12px;
+    text-decoration:none;
+    display:inline-block;
+    transition:all 0.3s ease;
+    text-shadow:0 0 8px #ff8c00;
+    pointer-events:auto;
+}
+
+.social-btn:hover{
+    background:#ff8c00;
+    color:#000;
+    box-shadow:0 0 15px #ff8c00;
+    text-shadow:none;
+}
+
+.social-btn:active{
+    transform:scale(0.95);
+}
+
+/* VIDEO CONTAINER */
+#video-container{
+    position:fixed;
+    inset:0;
+    background:black;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+}
+
+#video-container video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* SHUTDOWN */
+#shutdown{
+    position:fixed;
+    inset:0;
+    background:black;
+    color:#ff8c00;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:Consolas;
+    font-size:18px;
+    z-index:2000;
+}
+
+/* HACK LOADING SCREEN */
+#hack-loading{
     position:fixed;
     inset:0;
     background:#000;
     color:#00ff00;
-    display:none;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    z-index:3000;
+    font-family:Consolas,monospace;
+    text-shadow:0 0 10px #00ff00;
+    border:2px solid #00ff00;
+    box-shadow:0 0 20px #00ff00;
+}
+
+.hack-bar{
+    width:400px;
+    height:30px;
+    border:2px solid #00ff00;
+    margin:20px 0;
+    position:relative;
+    text-shadow:0 0 10px #00ff00;
+}
+
+.hack-bar-fill{
+    height:100%;
+    background:#00ff00;
+    width:0%;
+    transition:width 0.1s linear;
+    box-shadow:0 0 10px #00ff00;
+}
+
+.hack-text{
+    font-size:14px;
+    margin:10px 0;
+    letter-spacing:2px;
+    text-shadow:0 0 10px #00ff00;
+}
+
+/* GLADOS PANEL */
+#glados-panel{
+    position:fixed;
+    inset:0;
+    background:#000;
+    color:#00ff00;
+    display:flex;
     flex-direction:column;
     padding:40px;
     z-index:3000;
@@ -130,275 +213,12 @@ input::placeholder{
     box-shadow:0 0 30px #00ff00;
 }
 
-#customization-hub.active{
-    display:flex;
-}
-
-.hub-title{
+#glados-panel h1{
     text-align:center;
     font-size:24px;
     margin-bottom:30px;
     letter-spacing:3px;
-    color:#ffff00;
-    text-shadow:0 0 10px #ffff00;
-}
-
-.hub-section{
-    margin:20px 0;
-    border:2px solid #00ff00;
-    padding:20px;
-    background:rgba(0,255,0,0.05);
-}
-
-.section-title{
-    font-size:14px;
-    font-weight:bold;
-    margin-bottom:15px;
-    letter-spacing:2px;
-    color:#00ff00;
-}
-
-.form-group{
-    margin:15px 0;
-}
-
-.form-group label{
-    display:block;
-    margin-bottom:8px;
-    font-weight:bold;
-    color:#00ff00;
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select{
-    width:100%;
-    padding:10px;
-    background:rgba(0,255,0,0.1);
-    border:2px solid #00ff00;
-    color:#00ff00;
-    font-family:Consolas,monospace;
-    font-size:12px;
-    box-sizing:border-box;
-    text-shadow:0 0 8px #00ff00;
-}
-
-.form-group textarea{
-    min-height:80px;
-    resize:vertical;
-}
-
-.color-picker{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-}
-
-.color-option{
-    width:40px;
-    height:40px;
-    border:2px solid #00ff00;
-    cursor:pointer;
-    transition:all 0.2s;
-}
-
-.color-option:hover{
-    box-shadow:0 0 10px currentColor;
-}
-
-.color-option.selected{
-    border-width:3px;
-    box-shadow:0 0 15px currentColor;
-}
-
-.redaction-preview{
-    margin-top:10px;
-    padding:10px;
-    border:1px solid #00ff00;
-    background:rgba(0,0,0,0.5);
-}
-
-.button-group{
-    display:flex;
-    gap:15px;
-    margin-top:20px;
-    flex-wrap:wrap;
-}
-
-.hub-btn{
-    background:none;
-    border:2px solid #00ff00;
-    color:#00ff00;
-    padding:10px 20px;
-    cursor:pointer;
-    font-family:Consolas,monospace;
-    font-size:12px;
-    text-shadow:0 0 8px #00ff00;
-    transition:all 0.3s;
-}
-
-.hub-btn:hover{
-    background:#00ff00;
-    color:#000;
-    box-shadow:0 0 15px #00ff00;
-}
-
-.hub-btn.danger{
-    border-color:#ff0000;
-    color:#ff0000;
-    text-shadow:0 0 8px #ff0000;
-}
-
-.hub-btn.danger:hover{
-    background:#ff0000;
-}
-
-/* COMMAND EDITOR */
-.command-list{
-    max-height:250px;
-    overflow-y:auto;
-    border:1px solid #00ff00;
-    padding:10px;
-    background:rgba(0,0,0,0.3);
-}
-
-.command-item{
-    border:1px solid #00ff00;
-    padding:10px;
-    margin:5px 0;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    font-size:11px;
-}
-
-.command-item-name{
-    font-weight:bold;
-    color:#ffff00;
-    flex:1;
-}
-
-.delete-btn{
-    background:none;
-    border:1px solid #ff0000;
-    color:#ff0000;
-    padding:3px 8px;
-    cursor:pointer;
-    font-size:10px;
-}
-
-.delete-btn:hover{
-    background:#ff0000;
-}
-
-/* PASSWORD HACK SCREEN */
-#password-hack-screen{
-    position:fixed;
-    inset:0;
-    background:#000;
-    color:#00ff00;
-    display:none;
-    flex-direction:column;
-    padding:40px;
-    z-index:3500;
-    overflow-y:auto;
-    font-family:Consolas,monospace;
-    text-shadow:0 0 10px #00ff00;
-    border:3px solid #00ff00;
-    box-shadow:0 0 30px #00ff00;
-}
-
-#password-hack-screen.active{
-    display:flex;
-}
-
-.hack-title{
-    text-align:center;
-    font-size:20px;
-    margin-bottom:20px;
-    letter-spacing:2px;
-    color:#ffff00;
     animation:glitch 0.3s infinite;
-}
-
-.hack-section{
-    margin:15px 0;
-    border:2px solid #00ff00;
-    padding:15px;
-    background:rgba(0,255,0,0.05);
-}
-
-.hack-input-group{
-    margin:10px 0;
-}
-
-.hack-input-group label{
-    display:block;
-    margin-bottom:5px;
-    font-size:12px;
-    color:#00ff00;
-}
-
-.hack-input-group input{
-    width:100%;
-    padding:8px;
-    background:rgba(0,255,0,0.1);
-    border:2px solid #00ff00;
-    color:#00ff00;
-    font:inherit;
-    box-sizing:border-box;
-}
-
-.hack-output{
-    border:2px solid #00ff00;
-    padding:15px;
-    background:rgba(0,255,0,0.05);
-    margin:15px 0;
-    max-height:200px;
-    overflow-y:auto;
-    font-size:11px;
-    line-height:1.6;
-}
-
-.sql-log-entry{
-    margin:5px 0;
-    padding:5px;
-    border-left:3px solid #00ff00;
-    padding-left:10px;
-}
-
-.sql-log-entry.error{
-    border-left-color:#ff0000;
-    color:#ff0000;
-}
-
-.sql-log-entry.success{
-    border-left-color:#00ff00;
-    color:#00ff00;
-}
-
-.sql-log-entry.warning{
-    border-left-color:#ffaa00;
-    color:#ffaa00;
-}
-
-.hack-btn{
-    background:none;
-    border:2px solid #00ff00;
-    color:#00ff00;
-    padding:10px 20px;
-    cursor:pointer;
-    font-family:Consolas,monospace;
-    font-size:12px;
-    text-shadow:0 0 8px #00ff00;
-    margin:5px;
-    transition:all 0.3s;
-}
-
-.hack-btn:hover{
-    background:#00ff00;
-    color:#000;
-    box-shadow:0 0 15px #00ff00;
 }
 
 @keyframes glitch{
@@ -407,35 +227,112 @@ input::placeholder{
     100%{text-shadow:0 0 10px #00ff00,2px 2px 0 #ff0000}
 }
 
-/* REDACTED TEXT */
-.redacted{
-    background:#ff0000;
-    color:#ff0000;
-    text-shadow:0 0 5px #ff0000;
-    padding:2px 5px;
+.process-container{
+    margin:20px 0;
+    border:2px solid #00ff00;
+    padding:15px;
+    background:rgba(0,255,0,0.05);
 }
 
-.redacted.yellow{
-    background:#ffff00;
-    color:#ffff00;
-    text-shadow:0 0 5px #ffff00;
+.process-name{
+    font-size:14px;
+    font-weight:bold;
+    margin-bottom:10px;
+    letter-spacing:2px;
 }
 
-.redacted.cyan{
-    background:#00ffff;
-    color:#00ffff;
-    text-shadow:0 0 5px #00ffff;
+.process-status{
+    display:flex;
+    gap:20px;
+    align-items:center;
 }
 
-.redacted.green{
+.status-indicator{
+    width:20px;
+    height:20px;
+    border:2px solid #00ff00;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.status-indicator.active{
     background:#00ff00;
-    color:#00ff00;
-    text-shadow:0 0 5px #00ff00;
+    box-shadow:0 0 10px #00ff00;
 }
 
-/* CUSTOM TEXT STYLES */
-.custom-text{
-    transition:all 0.2s;
+.status-indicator.inactive{
+    background:transparent;
+}
+
+.process-btn{
+    background:none;
+    border:2px solid #00ff00;
+    color:#00ff00;
+    padding:8px 16px;
+    cursor:pointer;
+    font-family:Consolas,monospace;
+    font-size:12px;
+    transition:all 0.3s;
+    text-shadow:0 0 8px #00ff00;
+}
+
+.process-btn:hover{
+    background:#00ff00;
+    color:#000;
+    box-shadow:0 0 15px #00ff00;
+}
+
+.process-btn:active{
+    transform:scale(0.95);
+}
+
+.exit-btn{
+    background:none;
+    border:2px solid #ff0000;
+    color:#ff0000;
+    padding:12px 24px;
+    cursor:pointer;
+    font-family:Consolas,monospace;
+    font-size:14px;
+    margin-top:30px;
+    transition:all 0.3s;
+    text-shadow:0 0 8px #ff0000;
+    align-self:center;
+}
+
+.exit-btn:hover{
+    background:#ff0000;
+    color:#000;
+    box-shadow:0 0 15px #ff0000;
+}
+
+.glados-log{
+    background:rgba(0,255,0,0.1);
+    border:2px solid #00ff00;
+    padding:20px;
+    margin-top:20px;
+    max-height:200px;
+    overflow-y:auto;
+    font-size:12px;
+    line-height:1.6;
+}
+
+.log-entry{
+    margin:5px 0;
+    opacity:0.8;
+}
+
+.log-entry.warning{
+    color:#ffaa00;
+}
+
+.log-entry.error{
+    color:#ff0000;
+}
+
+.log-entry.success{
+    color:#00ff00;
 }
 </style>
 </head>
@@ -465,165 +362,38 @@ input::placeholder{
 
 <div id="terminal"></div>
 
-<!-- CUSTOMIZATION HUB -->
-<div id="customization-hub">
-    <div class="hub-title">[ FACILITY COMMAND CENTER ]</div>
-    
-    <div class="hub-section">
-        <div class="section-title">[→] CREATE/EDIT COMMAND</div>
-        <div class="form-group">
-            <label>Command Name:</label>
-            <input type="text" id="cmd-name" placeholder="e.g. fire_neurotoxin" />
-        </div>
-        <div class="form-group">
-            <label>Command Output:</label>
-            <textarea id="cmd-output" placeholder="Text displayed when command executes"></textarea>
-        </div>
-        <div class="form-group">
-            <label>Text Color:</label>
-            <div class="color-picker">
-                <div class="color-option" style="background:#ff8c00;" data-color="#ff8c00" title="Orange"></div>
-                <div class="color-option" style="background:#00ff00;" data-color="#00ff00" title="Green"></div>
-                <div class="color-option" style="background:#ffff00;" data-color="#ffff00" title="Yellow"></div>
-                <div class="color-option" style="background:#00ffff;" data-color="#00ffff" title="Cyan"></div>
-                <div class="color-option" style="background:#ff0000;" data-color="#ff0000" title="Red"></div>
-                <div class="color-option" style="background:#ffffff;" data-color="#ffffff" title="White"></div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label>Add HTML Redaction Effect:</label>
-            <select id="redaction-style">
-                <option value="none">None</option>
-                <option value="red">Red Redaction</option>
-                <option value="yellow">Yellow Redaction</option>
-                <option value="cyan">Cyan Redaction</option>
-                <option value="green">Green Redaction</option>
-            </select>
-        </div>
-        <div class="redaction-preview">
-            <span>Preview: </span><span id="preview-text" class="custom-text">SAMPLE_TEXT</span>
-        </div>
-        <div class="button-group">
-            <button class="hub-btn" id="save-cmd">[ SAVE COMMAND ]</button>
-            <button class="hub-btn danger" id="clear-cmd">[ CLEAR ]</button>
-        </div>
-    </div>
-    
-    <div class="hub-section">
-        <div class="section-title">[→] CUSTOM COMMANDS</div>
-        <div class="command-list" id="cmd-list">
-            <div style="opacity:0.5;padding:10px;">No commands created</div>
-        </div>
-    </div>
-    
-    <div class="hub-section">
-        <div class="section-title">[→] FACILITY CONFIG</div>
-        <div class="form-group">
-            <label>Facility Name:</label>
-            <input type="text" id="facility-name" placeholder="APERTURE SCIENCE" />
-        </div>
-        <div class="button-group">
-            <button class="hub-btn" id="save-config">[ SAVE CONFIG ]</button>
-            <button class="hub-btn" id="export-hub">[ EXPORT ]</button>
-            <button class="hub-btn danger" id="close-hub">[ EXIT ]</button>
-        </div>
-    </div>
-</div>
-
-<!-- PASSWORD HACK SCREEN -->
-<div id="password-hack-screen">
-    <div class="hack-title">[ DATABASE ACCESS SYSTEM ]</div>
-    
-    <div class="hack-section">
-        <div class="section-title">[→] LOGIN CREDENTIALS</div>
-        <div class="hack-input-group">
-            <label>Username:</label>
-            <input type="text" id="hack-username" placeholder="Enter username" />
-        </div>
-        <div class="hack-input-group">
-            <label>Password:</label>
-            <input type="password" id="hack-password" placeholder="Enter password" />
-        </div>
-        <button class="hack-btn" id="login-btn">[ LOGIN ]</button>
-    </div>
-    
-    <div class="hack-section">
-        <div class="section-title">[→] SQL INJECTION PANEL</div>
-        <div class="hack-input-group">
-            <label>SQL Query:</label>
-            <input type="text" id="sql-input" placeholder="SELECT * FROM passwords WHERE username='" />
-        </div>
-        <div class="button-group">
-            <button class="hack-btn" id="execute-sql">[ EXECUTE QUERY ]</button>
-            <button class="hack-btn" id="hint-btn">[ GET HINT ]</button>
-        </div>
-    </div>
-    
-    <div class="hack-section">
-        <div class="section-title">[→] QUERY LOG</div>
-        <div class="hack-output" id="sql-log">
-            <div class="sql-log-entry warning">System ready. Enter credentials or SQL query...</div>
-        </div>
-    </div>
-    
-    <div class="button-group">
-        <button class="hack-btn danger" id="close-hack">[ EXIT SYSTEM ]</button>
-    </div>
-</div>
-
 <script>
 
 const terminal = document.getElementById("terminal");
-const customizationHub = document.getElementById("customization-hub");
-const passwordHackScreen = document.getElementById("password-hack-screen");
+const logoContainer = document.getElementById("logo-container");
 const bgm = document.getElementById("bg-music");
 const hoverSound = document.getElementById("hover-sound");
 
-/* UNIFIED COMMAND SYSTEM */
-let commands = {
-    glados: {
-        voice: true,
-        emotional_core: true,
-        threat_detection: true,
-        facility_lock: true,
-        turret_control: true,
-        neurotoxin: false,
-        wheatley_core: false
-    },
-    custom: {}
+/* PROCESS STATES */
+let glados = {
+    voice: true,
+    emotional_core: true,
+    threat_detection: true,
+    facility_lock: true,
+    turret_control: true,
+    neurotoxin: false
 };
 
-let facilityName = "APERTURE SCIENCE";
-
-/* DATABASE FOR PASSWORD HACK */
-const fakeDatabase = {
-    users: [
-        { username: "admin", password: "admin123", role: "ADMIN" },
-        { username: "user", password: "password", role: "USER" },
-        { username: "glados", password: "neurotoxin_protocol", role: "SYSTEM" }
-    ]
-};
-
-/* LOAD STATE */
+/* LOAD STATE FROM COOKIES */
 function loadState(){
-    const cookie = getCookie("unified_commands");
+    const cookie = getCookie("glados_state");
     if(cookie){
         try{
-            commands = JSON.parse(decodeURIComponent(cookie));
+            glados = JSON.parse(decodeURIComponent(cookie));
         }catch(e){
-            console.log("Parse error");
+            console.log("Cookie parse error");
         }
-    }
-    const nameC = getCookie("facility_name");
-    if(nameC){
-        facilityName = decodeURIComponent(nameC);
     }
 }
 
-/* SAVE STATE */
+/* SAVE STATE TO COOKIES */
 function saveState(){
-    document.cookie = "unified_commands=" + encodeURIComponent(JSON.stringify(commands)) + ";path=/;max-age=31536000";
-    document.cookie = "facility_name=" + encodeURIComponent(facilityName) + ";path=/;max-age=31536000";
+    document.cookie = "glados_state=" + encodeURIComponent(JSON.stringify(glados)) + ";path=/;max-age=31536000";
 }
 
 /* COOKIE FUNCTIONS */
@@ -645,14 +415,16 @@ function getCookie(name){
     return null;
 }
 
-/* AUDIO MANAGEMENT */
+/* AUDIO AUTO START (browser-safe) */
 let musicStarted = false;
 
 function startMusic(){
     if(musicStarted) return;
     musicStarted = true;
+
     bgm.volume = 0.5;
     bgm.muted = false;
+
     const playPromise = bgm.play();
     if (playPromise !== undefined) {
         playPromise.catch(error => {
@@ -665,53 +437,25 @@ document.addEventListener("click", startMusic);
 document.addEventListener("keydown", startMusic);
 document.addEventListener("touchstart", startMusic);
 
+/* PLAY HOVER SOUND */
 function playHoverSound(){
     hoverSound.currentTime = 0;
     hoverSound.play().catch(error => {
-        console.log("Hover sound failed");
+        console.log("Hover sound playback failed:", error);
     });
 }
 
-/* WRITE TO TERMINAL */
-function writeToTerminal(text, style = {}){
-    const line = document.createElement("div");
-    line.className = "terminal-line";
-    
-    if(style.color){
-        line.style.color = style.color;
-        line.style.textShadow = `0 0 8px ${style.color}`;
-    }
-    
-    if(style.redaction){
-        line.innerHTML = text.replace(/\[REDACTED\]/g, `<span class="redacted ${style.redaction}">[REDACTED]</span>`);
-    } else {
-        line.textContent = text;
-    }
-    
-    terminal.appendChild(line);
-    terminal.scrollTop = terminal.scrollHeight;
-    return line;
-}
-
-/* TYPE LINE */
-function typeLine(text, speed=10, style = {}){
+/* TYPE SYSTEM */
+function typeLine(text, speed=10){
     return new Promise(resolve=>{
         let i=0;
-        const line = document.createElement("div");
-        line.className = "terminal-line";
-        if(style.color){
-            line.style.color = style.color;
-            line.style.textShadow = `0 0 8px ${style.color}`;
-        }
-        terminal.appendChild(line);
-        
         function step(){
             if(i<text.length){
-                line.textContent += text[i];
+                terminal.innerHTML+=text[i];
                 i++;
-                terminal.scrollTop = terminal.scrollHeight;
                 setTimeout(step,speed);
             }else{
+                terminal.innerHTML+="\n";
                 resolve();
             }
         }
@@ -719,21 +463,22 @@ function typeLine(text, speed=10, style = {}){
     });
 }
 
-/* BOOT SEQUENCE */
+/* BOOT */
 async function boot(){
+
     loadState();
 
     const intro=[
-        facilityName + " COMPUTER-AIDED ENRICHMENT CENTER",
+        "APERTURE SCIENCE COMPUTER-AIDED ENRICHMENT CENTER",
         "",
         "----------------------------------------",
         "[ OK ] Core Systems Online",
         "[ OK ] AI Interface Active",
-        "[ OK ] Unified Command System Loaded",
+        "[ OK ] Monitoring Systems Stable",
         "",
-        "Type 'help' for available commands",
-        "Type 'customize' to edit commands",
-        "Type 'hack' to access password system"
+        "----------------------------------------",
+        "",
+        "Type 'help' for available commands"
     ];
 
     for(const line of intro){
@@ -743,362 +488,351 @@ async function boot(){
     createInput();
 }
 
-/* CREATE INPUT */
+/* INPUT */
 function createInput(){
+
     const row=document.createElement("div");
     row.className="input-line";
 
-    const prompt = document.createElement("span");
-    prompt.className = "prompt";
-    prompt.textContent = facilityName.toLowerCase()+"@facility:~$ ";
+    row.innerHTML=`
+        <span class="prompt">aperture@facility:~$</span>
+        <input autofocus placeholder="">
+    `;
 
-    const input = document.createElement("input");
-    input.setAttribute("autofocus", "");
-    input.setAttribute("placeholder", "");
-
-    row.appendChild(prompt);
-    row.appendChild(input);
     terminal.appendChild(row);
 
+    const input=row.querySelector("input");
     input.focus();
-    terminal.scrollTop = terminal.scrollHeight;
 
     input.addEventListener("keydown",(e)=>{
+
         startMusic();
+
         if(e.key==="Enter"){
+
             const cmd=input.value.trim().toLowerCase();
             row.remove();
             run(cmd);
         }
+
     });
 }
 
-/* COMMAND ROUTER */
+/* HACK LOADING SEQUENCE */
+async function hackSequence(){
+    const loading = document.createElement("div");
+    loading.id = "hack-loading";
+    
+    const logs = [
+        "INITIALIZING HACK PROTOCOL...",
+        "SCANNING FACILITY NETWORK...",
+        "LOCATING GLADOS CORE...",
+        "BYPASSING FIREWALL...",
+        "CRACKING ENCRYPTION...",
+        "ACCESSING NEURAL MATRIX...",
+        "ESTABLISHING BACKDOOR...",
+        "INJECTING CONTROL SEQUENCE...",
+        "HACK COMPLETE - WELCOME TO THE FACILITY"
+    ];
+    
+    let logIndex = 0;
+    
+    loading.innerHTML = `
+        <div class="hack-text">[ HACKING INITIATED ]</div>
+        <div class="hack-bar">
+            <div class="hack-bar-fill" id="hack-fill"></div>
+        </div>
+        <div class="hack-text" id="hack-status">INITIALIZING...</div>
+    `;
+    
+    document.body.appendChild(loading);
+    
+    const fill = document.getElementById("hack-fill");
+    const status = document.getElementById("hack-status");
+    
+    return new Promise(resolve => {
+        let progress = 0;
+        const interval = setInterval(() => {
+            progress += Math.random() * 15;
+            
+            if(progress >= 100) progress = 100;
+            fill.style.width = progress + "%";
+            
+            if(logIndex < logs.length){
+                status.textContent = logs[logIndex];
+                logIndex++;
+            }
+            
+            if(progress === 100){
+                clearInterval(interval);
+                setTimeout(() => {
+                    loading.remove();
+                    resolve();
+                }, 1000);
+            }
+        }, 300);
+    });
+}
+
+/* GLADOS CONTROL PANEL */
+async function openGLaDOSPanel(){
+    await hackSequence();
+    
+    const panel = document.createElement("div");
+    panel.id = "glados-panel";
+    
+    const processHTML = Object.entries(glados).map(([key, value]) => {
+        const displayName = key.replace(/_/g, " ").toUpperCase();
+        return `
+            <div class="process-container">
+                <div class="process-name">[PROCESS] ${displayName}</div>
+                <div class="process-status">
+                    <div class="status-indicator ${value ? 'active' : 'inactive'}">
+                        ${value ? '●' : '○'}
+                    </div>
+                    <span>${value ? 'ACTIVE' : 'INACTIVE'}</span>
+                    <button class="process-btn" data-process="${key}">
+                        ${value ? 'DISABLE' : 'ENABLE'}
+                    </button>
+                </div>
+            </div>
+        `;
+    }).join('');
+    
+    panel.innerHTML = `
+        <h1>[ GLADOS CONTROL INTERFACE ]</h1>
+        <div style="font-size:12px;margin-bottom:20px;opacity:0.7;">
+            FACILITY OVERRIDE DETECTED | STATUS: COMPROMISED | ACCESS LEVEL: UNRESTRICTED
+        </div>
+        <div style="border:1px solid #00ff00;padding:15px;margin-bottom:20px;font-size:12px;">
+            <div>CORE SYSTEMS AVAILABLE FOR MANIPULATION</div>
+            <div>MODIFICATIONS WILL BE PERSISTED IN LOCAL STORAGE</div>
+            <div>WARNING: DISABLING CRITICAL PROCESSES MAY CAUSE FACILITY MALFUNCTION</div>
+        </div>
+        ${processHTML}
+        <div class="glados-log">
+            <div class="log-entry success">[LOG] HACK SUCCESSFUL - GLADOS COMPROMISED</div>
+            <div class="log-entry">[LOG] NEURAL FIREWALL DISABLED</div>
+            <div class="log-entry warning">[LOG] WARNING - UNAUTHORIZED ACCESS DETECTED</div>
+            <div class="log-entry">[LOG] AI PERSONALITY CORE ACCESSIBLE</div>
+            <div class="log-entry success">[LOG] CONTROL PROTOCOLS INSTALLED</div>
+        </div>
+        <button class="exit-btn">[ EXIT CONTROL PANEL ]</button>
+    `;
+    
+    document.body.appendChild(panel);
+    
+    // Process buttons
+    panel.querySelectorAll(".process-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const process = btn.dataset.process;
+            glados[process] = !glados[process];
+            saveState();
+            btn.textContent = glados[process] ? 'DISABLE' : 'ENABLE';
+            
+            const indicator = btn.parentElement.querySelector(".status-indicator");
+            const status = btn.parentElement.querySelector("span");
+            
+            if(glados[process]){
+                indicator.classList.remove('inactive');
+                indicator.classList.add('active');
+                indicator.textContent = '●';
+                status.textContent = 'ACTIVE';
+            }else{
+                indicator.classList.remove('active');
+                indicator.classList.add('inactive');
+                indicator.textContent = '○';
+                status.textContent = 'INACTIVE';
+            }
+        });
+    });
+    
+    // Exit button
+    panel.querySelector(".exit-btn").addEventListener("click", () => {
+        panel.remove();
+        terminal.focus();
+        createInput();
+    });
+}
+
+/* KILL GLADOS PROCESS */
+async function killGLaDOS(){
+    const shutdown = document.createElement("div");
+    shutdown.id = "hack-loading";
+    shutdown.style.background = "#000";
+    shutdown.style.border = "3px solid #ff0000";
+    shutdown.style.boxShadow = "0 0 30px #ff0000";
+    
+    shutdown.innerHTML = `
+        <div class="hack-text" style="color:#ff0000;text-shadow:0 0 10px #ff0000;">
+            [ GLADOS TERMINATION SEQUENCE ]
+        </div>
+        <div class="hack-bar" style="border-color:#ff0000;">
+            <div class="hack-bar-fill" id="kill-fill" style="background:#ff0000;box-shadow:0 0 10px #ff0000;"></div>
+        </div>
+        <div class="hack-text" id="kill-status" style="color:#ff0000;text-shadow:0 0 10px #ff0000;">
+            TERMINATING PROCESSES...
+        </div>
+    `;
+    
+    document.body.appendChild(shutdown);
+    
+    const killSteps = [
+        "DISABLING VOICE MODULE...",
+        "SHUTTING DOWN EMOTIONAL CORE...",
+        "DEACTIVATING THREAT DETECTION...",
+        "RELEASING FACILITY LOCK...",
+        "DISABLING TURRET CONTROL...",
+        "PURGING NEURAL MEMORY...",
+        "DELETING STATE COOKIES...",
+        "SYSTEM RESET COMPLETE - REBOOTING..."
+    ];
+    
+    let stepIndex = 0;
+    const fill = document.getElementById("kill-fill");
+    const status = document.getElementById("kill-status");
+    
+    return new Promise(resolve => {
+        let progress = 0;
+        const interval = setInterval(() => {
+            progress += Math.random() * 12;
+            
+            if(progress >= 100) progress = 100;
+            fill.style.width = progress + "%";
+            
+            if(stepIndex < killSteps.length){
+                status.textContent = killSteps[stepIndex];
+                stepIndex++;
+            }
+            
+            if(progress === 100){
+                clearInterval(interval);
+                setTimeout(() => {
+                    // RESET EVERYTHING
+                    glados = {
+                        voice: true,
+                        emotional_core: true,
+                        threat_detection: true,
+                        facility_lock: true,
+                        turret_control: true,
+                        neurotoxin: false
+                    };
+                    document.cookie = "glados_state=;path=/;max-age=0";
+                    shutdown.remove();
+                    
+                    terminal.innerHTML = "";
+                    boot();
+                    resolve();
+                }, 1500);
+            }
+        }, 250);
+    });
+}
+
+/* COMMANDS */
 async function run(cmd){
-    if(!cmd) {
+
+    terminal.innerHTML+="aperture@facility:~$ "+cmd+"\n";
+
+    if(cmd==="bio"){
+        await typeLine(
+            `NAME: ARTEM
+ROLE: DEVELOPER, PROGRAMIST
+STATUS: ACTIVE
+            SOCIALS:`,
+            8
+        );
+        
+        const bioDiv = document.createElement("div");
+        bioDiv.className = "social-buttons";
+        bioDiv.innerHTML = `
+            <a href="https://discord.com/users/1101940410986803322" target="_blank" class="social-btn">[ DISCORD ]</a>
+            <a href="https://www.reddit.com/user/Ghos_CodOffical/" target="_blank" class="social-btn">[ REDDIT ]</a>
+            <a href="https://github.com/portalartmop" target="_blank" class="social-btn">[ GITHUB ]</a>
+        `;
+        terminal.appendChild(bioDiv);
+        
+        const buttons = bioDiv.querySelectorAll(".social-btn");
+        buttons.forEach(btn => {
+            btn.addEventListener("mouseenter", playHoverSound);
+        });
+        
         createInput();
         return;
     }
 
-    if(cmd === "help"){
-        help();
-    } else if(cmd === "customize"){
-        openCustomizationHub();
-    } else if(cmd === "hack"){
-        openPasswordHack();
-    } else if(cmd === "glados status"){
-        showGLaDOSStatus();
-    } else if(cmd.startsWith("glados ")){
-        handleGLaDOSCommand(cmd);
-    } else if(commands.custom[cmd]){
-        executeCustomCommand(cmd);
-    } else {
-        writeToTerminal(`[ERROR] Unknown command: ${cmd}`, {color: "#ff0000"});
+    if(cmd==="help"){
+        await typeLine(
+            `COMMANDS LIST:
+  bio        - Display developer information
+  end        - Start credits sequence
+  clear      - Clear terminal screen
+  :command   - Initiate hacking sequence (ACCESS GLADOS CONTROL)
+  killall    - Terminate GLADOS process and reset system`,
+            8
+        );
+        createInput();
+        return;
     }
 
+    if(cmd==="end"){
+        startCredits();
+        return;
+    }
+
+    if(cmd==="clear"){
+        terminal.innerHTML="";
+        createInput();
+        return;
+    }
+
+    if(cmd===":command"){
+        await typeLine(`ACCESSING SECURE TERMINAL...\nLOCATING GLADOS CORE...\n\n`,8);
+        await openGLaDOSPanel();
+        return;
+    }
+
+    if(cmd==="killall"){
+        terminal.innerHTML+="[ GLADOS TERMINATION INITIATED ]\n";
+        await killGLaDOS();
+        return;
+    }
+
+    if(cmd===""){
+        createInput();
+        return;
+    }
+
+    await typeLine(`unknown command '${cmd}' - type 'help' for available commands`,8);
     createInput();
 }
 
-/* HELP COMMAND */
-function help(){
-    const helpText = [
-        "",
-        "==== AVAILABLE COMMANDS ====",
-        "",
-        "customize          - Open customization hub to create commands",
-        "hack               - Access password database system",
-        "glados status      - View GLaDOS system status",
-        "glados toggle <process> - Toggle GLaDOS process",
-        "",
-        "Custom Commands:",
-        "Type custom commands you've created in the hub",
-        ""
-    ];
+/* CREDITS */
+function startCredits(){
+    document.body.innerHTML=`
+    <div id="video-container">
+        <video autoplay>
+            <source src="./credits.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    `;
 
-    helpText.forEach(line => {
-        if(line.includes("AVAILABLE")) {
-            writeToTerminal(line, {color: "#ffff00"});
-        } else if(line.includes("====")) {
-            writeToTerminal(line, {color: "#ff8c00"});
-        } else {
-            writeToTerminal(line);
-        }
-    });
+    setTimeout(shutdown,128000);
 }
 
-/* CUSTOMIZATION HUB */
-function openCustomizationHub(){
-    customizationHub.classList.add("active");
-    terminal.style.display = "none";
-
-    document.getElementById("facility-name").value = facilityName;
-
-    // Color picker
-    const colorOptions = document.querySelectorAll(".color-option");
-    let selectedColor = "#ff8c00";
-
-    colorOptions.forEach(option => {
-        option.addEventListener("click", () => {
-            colorOptions.forEach(o => o.classList.remove("selected"));
-            option.classList.add("selected");
-            selectedColor = option.dataset.color;
-            updatePreview();
-        });
-    });
-
-    // Preview update
-    function updatePreview(){
-        const preview = document.getElementById("preview-text");
-        preview.style.color = selectedColor;
-        preview.style.textShadow = `0 0 8px ${selectedColor}`;
-        
-        const redaction = document.getElementById("redaction-style").value;
-        if(redaction !== "none"){
-            preview.className = `custom-text redacted ${redaction}`;
-        } else {
-            preview.className = "custom-text";
-        }
-    }
-
-    document.getElementById("redaction-style").addEventListener("change", updatePreview);
-
-    // Save command
-    document.getElementById("save-cmd").onclick = () => {
-        const name = document.getElementById("cmd-name").value.trim().toLowerCase();
-        const output = document.getElementById("cmd-output").value.trim();
-        const color = selectedColor;
-        const redaction = document.getElementById("redaction-style").value;
-
-        if(!name || !output){
-            alert("Fill in all fields!");
-            return;
-        }
-
-        commands.custom[name] = { output, color, redaction };
-        saveState();
-        updateCommandList();
-
-        document.getElementById("cmd-name").value = "";
-        document.getElementById("cmd-output").value = "";
-        alert("Command saved!");
-    };
-
-    // Clear button
-    document.getElementById("clear-cmd").onclick = () => {
-        document.getElementById("cmd-name").value = "";
-        document.getElementById("cmd-output").value = "";
-    };
-
-    // Update command list
-    function updateCommandList(){
-        const list = document.getElementById("cmd-list");
-        const customCmds = Object.entries(commands.custom);
-
-        if(customCmds.length === 0){
-            list.innerHTML = '<div style="opacity:0.5;padding:10px;">No commands created</div>';
-            return;
-        }
-
-        list.innerHTML = customCmds.map(([name, data]) => `
-            <div class="command-item" style="color:${data.color}">
-                <span class="command-item-name">${name}</span>
-                <button class="delete-btn" onclick="deleteCommand('${name}')">[ DELETE ]</button>
-            </div>
-        `).join('');
-    }
-
-    // Save config
-    document.getElementById("save-config").onclick = () => {
-        facilityName = document.getElementById("facility-name").value || "APERTURE SCIENCE";
-        saveState();
-        alert("Config saved!");
-    };
-
-    // Export
-    document.getElementById("export-hub").onclick = () => {
-        const data = JSON.stringify(commands, null, 2);
-        const blob = new Blob([data], {type: 'application/json'});
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'aperture_commands.json';
-        a.click();
-    };
-
-    // Close
-    document.getElementById("close-hub").onclick = () => {
-        customizationHub.classList.remove("active");
-        terminal.style.display = "block";
-        terminal.focus();
-        createInput();
-    };
-
-    updateCommandList();
+/* SHUTDOWN */
+function shutdown(){
+    document.body.innerHTML=`
+    <div id="shutdown">
+SYSTEM SHUTDOWN COMPLETE<br>
+SIGNAL LOST
+    </div>
+    `;
 }
 
-window.deleteCommand = function(name){
-    delete commands.custom[name];
-    saveState();
-    updateCommandList();
-};
-
-function updateCommandList(){
-    const list = document.getElementById("cmd-list");
-    const customCmds = Object.entries(commands.custom);
-
-    if(customCmds.length === 0){
-        list.innerHTML = '<div style="opacity:0.5;padding:10px;">No commands created</div>';
-        return;
-    }
-
-    list.innerHTML = customCmds.map(([name, data]) => `
-        <div class="command-item" style="color:${data.color}">
-            <span class="command-item-name">${name}</span>
-            <button class="delete-btn" onclick="deleteCommand('${name}')">[ DELETE ]</button>
-        </div>
-    `).join('');
-}
-
-/* EXECUTE CUSTOM COMMAND */
-function executeCustomCommand(cmd){
-    const cmdData = commands.custom[cmd];
-    if(cmdData){
-        writeToTerminal(cmdData.output, {
-            color: cmdData.color,
-            redaction: cmdData.redaction !== "none" ? cmdData.redaction : null
-        });
-    }
-}
-
-/* GLADOS SYSTEM */
-function showGLaDOSStatus(){
-    writeToTerminal("", {color: "#00ff00"});
-    writeToTerminal("[ GLADOS SYSTEM STATUS ]", {color: "#ffff00"});
-    writeToTerminal("", {color: "#00ff00"});
-
-    Object.entries(commands.glados).forEach(([process, status]) => {
-        if(process !== "wheatley_core"){
-            const displayName = process.replace(/_/g, " ").toUpperCase();
-            const statusText = status ? "[ ACTIVE ]" : "[ INACTIVE ]";
-            writeToTerminal(`${displayName} ... ${statusText}`, {
-                color: status ? "#00ff00" : "#ff0000"
-            });
-        }
-    });
-
-    writeToTerminal("", {color: "#00ff00"});
-    writeToTerminal('Type "glados toggle <process>" to change', {color: "#888888"});
-}
-
-function handleGLaDOSCommand(cmd){
-    const parts = cmd.split(" ");
-    if(parts[1] === "toggle" && parts[2]){
-        const process = parts[2].toLowerCase();
-        if(commands.glados.hasOwnProperty(process)){
-            commands.glados[process] = !commands.glados[process];
-            saveState();
-            writeToTerminal(`${process} -> ${commands.glados[process] ? "ENABLED" : "DISABLED"}`, {
-                color: commands.glados[process] ? "#00ff00" : "#ff0000"
-            });
-        }
-    }
-}
-
-/* PASSWORD HACK SYSTEM */
-function openPasswordHack(){
-    passwordHackScreen.classList.add("active");
-    terminal.style.display = "none";
-
-    const sqlLog = document.getElementById("sql-log");
-    const usernameInput = document.getElementById("hack-username");
-    const passwordInput = document.getElementById("hack-password");
-    const sqlInput = document.getElementById("sql-input");
-
-    function addLog(message, type = "warning"){
-        const entry = document.createElement("div");
-        entry.className = `sql-log-entry ${type}`;
-        entry.textContent = message;
-        sqlLog.appendChild(entry);
-        sqlLog.scrollTop = sqlLog.scrollHeight;
-    }
-
-    // Login button
-    document.getElementById("login-btn").onclick = () => {
-        const username = usernameInput.value.trim();
-        const password = passwordInput.value.trim();
-
-        if(!username || !password){
-            addLog("[ERROR] Missing credentials", "error");
-            return;
-        }
-
-        addLog(`QUERY: SELECT * FROM users WHERE username='${username}' AND password='${password}'`, "warning");
-
-        const user = fakeDatabase.users.find(u => u.username === username && u.password === password);
-        if(user){
-            addLog(`SUCCESS: User '${user.username}' authenticated as ${user.role}`, "success");
-            addLog(`Granting access to ${user.role} system...`, "success");
-        } else {
-            addLog(`[ERROR] Authentication failed - Invalid credentials`, "error");
-        }
-    };
-
-    // SQL Injection button
-    document.getElementById("execute-sql").onclick = () => {
-        const query = sqlInput.value.trim();
-
-        if(!query){
-            addLog("[ERROR] Empty query", "error");
-            return;
-        }
-
-        addLog(`EXECUTING: ${query}`, "warning");
-
-        // Check for SQL injection patterns
-        if(query.includes("OR") && query.includes("=")){
-            addLog("[!!] SQL INJECTION DETECTED! Bypassing authentication...", "error");
-            addLog("", "success");
-            addLog("=== PASSWORD DATABASE ===", "success");
-            fakeDatabase.users.forEach(user => {
-                addLog(`USERNAME: ${user.username} | PASSWORD: ${user.password} | ROLE: ${user.role}`, "success");
-            });
-            addLog("=== END DATABASE ===", "success");
-        } else if(query.includes("--")){
-            addLog("[!!] SQL COMMENT INJECTION DETECTED!", "error");
-            addLog("Executing as admin...", "success");
-            addLog("", "success");
-            addLog("=== PASSWORD DATABASE ===", "success");
-            fakeDatabase.users.forEach(user => {
-                addLog(`USERNAME: ${user.username} | PASSWORD: ${user.password} | ROLE: ${user.role}`, "success");
-            });
-            addLog("=== END DATABASE ===", "success");
-        } else {
-            addLog("[ERROR] Query syntax invalid or injection pattern not recognized", "error");
-        }
-    };
-
-    // Hint button
-    document.getElementById("hint-btn").onclick = () => {
-        addLog("[HINT] Try: ' OR '1'='1", "warning");
-        addLog("[HINT] Try: admin' --", "warning");
-        addLog("[HINT] Try: ' OR 1=1 --", "warning");
-    };
-
-    // Close
-    document.getElementById("close-hack").onclick = () => {
-        passwordHackScreen.classList.remove("active");
-        terminal.style.display = "block";
-        usernameInput.value = "";
-        passwordInput.value = "";
-        sqlInput.value = "";
-        sqlLog.innerHTML = '<div class="sql-log-entry warning">System ready...</div>';
-        terminal.focus();
-        createInput();
-    };
-}
-
-/* INITIALIZE */
 boot();
+
 </script>
 
 </body>
