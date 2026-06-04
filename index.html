@@ -15,9 +15,11 @@ body{
     overflow-y: hidden; /* Enables vertical scrolling */
     overflow-x: hidden; /* Disables horizontal scrolling */
     scroll-behavior: smooth;
-    overflow: visible;
+    overflow: hidden;
 }
-
+.element::-webkit-scrollbar {
+  display: none;
+}
 /* FLICKER */
 body.flicker{
     animation:flicker .12s infinite;
