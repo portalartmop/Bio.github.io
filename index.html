@@ -976,6 +976,14 @@ STATUS: ACTIVE
 :::-----==-==--===--==-::::::::-.--..::::......::..+@@++==#+-==+++++=======+=-:-------:::-------------]\n";
         return;
     }
+    if (cmd==="soundoff"){
+        bgm.muted = true;
+        return;
+    }
+    if (cmd==="soundon"){
+        bgm.muted = false;
+        return;
+    }
     
         
     await typeLine(`unknown command '${cmd}' - type 'help' for available commands`,8);
